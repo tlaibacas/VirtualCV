@@ -2,13 +2,8 @@
 import Theme from "./themeButton/Theme";
 import { useEffect, useState } from "react";
 import styles from "./Header.module.css";
-import type { ThemeType } from "@/types/types";
 import LangBar from "./langBar/LangBar";
-type HeaderProps = {
-  initialTheme?: ThemeType;
-  langProp?: string | undefined;
-  pathProp?: string | undefined;
-};
+import { HeaderProps } from "./types";
 
 export default function Header({
   initialTheme,

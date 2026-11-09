@@ -2,13 +2,9 @@
 
 import { useState, useSyncExternalStore } from "react";
 import styles from "./Theme.module.css";
-import type { ThemeType } from "@/types/types";
 import { createCookie } from "@/libs/cookies/cookies";
 import { useRouter } from "next/navigation";
-
-type ThemeProps = {
-  initialTheme?: ThemeType;
-};
+import { ThemeProps, ThemeType } from "./types";
 
 const mediaQuery = "(prefers-color-scheme: dark)";
 

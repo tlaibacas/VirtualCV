@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { config } from "@/cfg/site.config";
-import { languages } from "@/libs/i18n/locales/countries";
+import { locales } from "@/libs/i18n/locales/countries";
 
 export const metadata: Metadata = {
   metadataBase: new URL(config.siteUrl),
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
     languages: Object.fromEntries(
-      Object.keys(languages).map((code) => [code, `/${code}`]),
+      Object.entries(locales).map((code) => [code, `/${code}`]),
     ),
   },
 

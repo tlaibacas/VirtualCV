@@ -1,13 +1,8 @@
 "use client";
 
 import { remember } from "@/libs/i18n/translations/translations";
-import type { Country } from "@/types/types";
+import type { Props } from "./types";
 import styles from "./Remember.module.css";
-
-type Props = {
-  onChange: (checked: boolean) => void;
-  langProp?: Country["code"];
-};
 
 export default function Remember({ onChange, langProp }: Props) {
   return (

@@ -1,6 +1,5 @@
 "use client";
 
-import type { CookieCode } from "@/types/types";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Remember from "@/components/card/remember/Remember";
@@ -13,9 +12,7 @@ import {
   goTo,
   continueText,
 } from "@/libs/i18n/translations/translations";
-type Props = {
-  cookie: Exclude<CookieCode, { showPage: true }>;
-};
+import { Props } from "./types";
 
 export default function CookieDialog({ cookie }: Props) {
   const [, setRemember] = useState(false);

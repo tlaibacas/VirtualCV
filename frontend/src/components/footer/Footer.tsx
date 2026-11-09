@@ -1,15 +1,13 @@
-import { Country } from "@/types/types";
+import type { FooterProps } from "./types";
 import styles from "./Footer.module.css";
-import { AllRightsReserved } from "@/libs/i18n/translations/translations";
-type FooterProps = {
-  langProp: Country["code"];
-};
+import { allRightsReserved } from "@/libs/i18n/translations/translations";
+
 export default function Footer({ langProp }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <p>
         &copy; {new Date().getFullYear()}{" "}
-        {AllRightsReserved[langProp] || "All rights reserved"}
+        {allRightsReserved[langProp] || "All rights reserved"}
       </p>
       <p>My VirtualCV</p>
     </footer>

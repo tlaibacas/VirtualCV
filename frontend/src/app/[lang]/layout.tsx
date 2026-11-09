@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
-import { LangProps } from "@/types/types";
+import { Props } from "./types";
 import { metadata as siteMetadata } from "@/app/metadata/metadata";
 import {
   isSupportedLanguage,
@@ -17,7 +17,7 @@ import "@/app/(home)/globals.css";
 
 export const metadata: Metadata = siteMetadata;
 
-export default async function Layout({ children, params }: LangProps) {
+export default async function Layout({ children, params }: Props) {
   const { lang } = await params;
 
   if (!isSupportedLanguage(lang)) {
@@ -25,8 +25,11 @@ export default async function Layout({ children, params }: LangProps) {
   }
 
   const cookieStore = await cookies();
-  const langLayoutData = getLanguageLayoutData(cookieStore, lang);
-  const theme = getTheme(cookieStore);
+  const langVal = cookieStore.get("lang")?.value;
+  const warnVal = cookieStore.get("warn")?.value;
+  const langLayoutData = getLanguageLayoutData(langVal, lang, warnVal);
+  const themeVal = cookieStore.get("theme")?.value;
+  const theme = getTheme(themeVal);
   const cookieResult = langLayoutData.cookieResult;
 
   return (

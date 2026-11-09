@@ -1,7 +1,7 @@
 "use client";
 import styles from "./LangCards.module.css";
 import Image from "next/image";
-import { languages } from "@/libs/i18n/locales/countries";
+import { locales } from "@/libs/i18n/locales/countries";
 import Remember from "@/components/card/remember/Remember";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -14,29 +14,27 @@ export default function LangCards() {
     <main className={styles.main}>
       <h1 className={styles.title}>Select your language</h1>
       <div className={styles.grid}>
-        {Object.values(languages).map((country) => (
+        {Object.entries(locales).map(([code, val]) => (
           <a
-            key={country.code}
+            key={code}
             className={styles.card}
             onClick={() => {
               if (remember) {
-                createCookie("lang", country.code);
+                createCookie("lang", code);
               }
 
-              
-
-  router.push(`/${country.code}`);
+              router.push(`/${code}`);
             }}
           >
             <Image
               className={styles.flag}
-              src={country.flagPath}
-              alt={`${country.alt} flag`}
+              src={val.flagPath}
+              alt={`${val.alt} flag`}
               width={120}
               height={80}
               loading="eager"
             />
-            <span className={styles.text}>{country.language}</span>
+            <span className={styles.text}>{val.language}</span>
           </a>
         ))}
       </div>

@@ -1,17 +1,11 @@
-import type { Translations } from "@/types/types";
-type DualTranslations = {
-  first: Translations;
-  second: Translations;
-};
-
-const loading: Translations = {
+const loading = {
   pt: "A carregar...",
   es: "Cargando...",
   en: "Loading...",
   fr: "Chargement...",
 };
 
-const dialog: DualTranslations = {
+const dialog = {
   first: {
     pt: "O seu idioma guardado difere do idioma atual da página.",
     es: "Su idioma guardado difiere del idioma actual de la página.",
@@ -26,28 +20,28 @@ const dialog: DualTranslations = {
   },
 };
 
-const dontWarn: Translations = {
+const dontWarn = {
   pt: "Não me avise novamente",
   es: "No me vuelvas a avisar",
   en: "Don't warn me again",
   fr: "Ne plus m'avertir",
 };
 
-const goTo: Translations = {
+const goTo = {
   pt: "Ir para",
   es: "Ir a",
   en: "Go to",
   fr: "Aller à",
 };
 
-const continueText: Translations = {
+const continueText = {
   pt: "Continuar",
   es: "Continuar",
   en: "Continue",
   fr: "Continuer",
 };
 
-const remember: DualTranslations = {
+const remember = {
   first: {
     pt: "Sim",
     es: "Sí",
@@ -62,7 +56,7 @@ const remember: DualTranslations = {
   },
 };
 
-const AllRightsReserved: Translations = {
+const allRightsReserved = {
   pt: "Todos os direitos reservados.",
   es: "Todos los derechos reservados.",
   en: "All rights reserved.",
@@ -76,5 +70,5 @@ export {
   goTo,
   continueText,
   remember,
-  AllRightsReserved,
+  allRightsReserved,
 };

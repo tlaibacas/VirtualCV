@@ -1,34 +1,31 @@
-import { Countries } from "@/types/types";
+// Functions and variables related to country locales
 
-const languages: Countries = {
-  pt: {
-    code: "pt",
-    alt: "Portuguese",
-    language: "Português",
-    flagPath: "/assets/pt.svg",
-  },
-  en: {
-    code: "en",
-    alt: "English",
-    language: "English",
-    flagPath: "/assets/en.svg",
-  },
-  es: {
-    code: "es",
-    alt: "Spanish",
-    language: "Español",
-    flagPath: "/assets/es.svg",
-  },
-  fr: {
-    code: "fr",
-    alt: "French",
-    language: "Français",
-    flagPath: "/assets/fr.svg",
-  },
-};
+const localeData = [
+  ["pt", "Portuguese", "Português"],
+  ["en", "English", "English"],
+  ["es", "Spanish", "Español"],
+  ["fr", "French", "Français"],
+] as const;
 
-const supportedLanguageCodes = new Set(
-  Object.values(languages).map(({ code }) => code),
+const locales = Object.fromEntries(
+  localeData.map(([code, alt, language]) => [
+    code,
+    {
+      alt,
+      language,
+      flagPath: `/assets/${code}.svg`,
+    },
+  ]),
 );
 
-export { languages, supportedLanguageCodes };
+const codes = localeData.map(([code]) => code);
+
+// Types //
+
+type LanguageCode = (typeof localeData)[number][0];
+type LanguageAlt = (typeof localeData)[number][1];
+type LanguageName = (typeof localeData)[number][2];
+
+// Exports
+export type { LanguageCode, LanguageAlt, LanguageName };
+export { locales, codes };

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { languages } from "@/libs/i18n/locales/countries";
+import { locales } from "@/libs/i18n/locales/countries";
 import { useRouter } from "next/navigation";
 import styles from "./LangBar.module.css";
 import Image from "next/image";
@@ -10,7 +10,7 @@ function LangBar(langProp?: { langProp: string | undefined }) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(langProp?.langProp || "en");
   const router = useRouter();
-  const current = languages[selected as keyof typeof languages];
+  const current = locales[selected as keyof typeof locales];
 
   return (
     <nav className={styles.langBar} aria-label="Language selection">
@@ -37,7 +37,7 @@ function LangBar(langProp?: { langProp: string | undefined }) {
         aria-hidden={!open}
         inert={!open}
       >
-        {Object.values(languages).map(({ code, language, flagPath }) => (
+        {Object.entries(locales).map(([code, { language, flagPath }]) => (
           <li key={code}>
             <button
               type="button"
