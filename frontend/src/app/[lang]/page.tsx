@@ -1,8 +1,5 @@
 import "@/app/(home)/globals.css";
-import {
-  getTranslations,
-  loading,
-} from "@/libs/i18n/translations/translations";
+import { getTranslations } from "@/libs/i18n/translations/translations";
 import { Props } from "./types";
 import Image from "next/image";
 import styles from "./page.module.css";
