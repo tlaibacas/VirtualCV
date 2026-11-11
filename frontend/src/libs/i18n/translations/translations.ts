@@ -36,21 +36,6 @@ const continueText = {
   fr: "Continuer",
 };
 
-const remember = {
-  first: {
-    pt: "Sim",
-    es: "Sí",
-    en: "Yes",
-    fr: "Oui",
-  },
-  second: {
-    pt: "Não",
-    es: "No",
-    en: "No",
-    fr: "Non",
-  },
-};
-
 const allRightsReserved = {
   pt: "Todos os direitos reservados.",
   es: "Todos los derechos reservados.",
@@ -60,6 +45,8 @@ const allRightsReserved = {
 
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
+  yes: ["Sim", "Yes", "Si", "Oui"],
+  no: ["Não", "No", "No", "Non"],
 } as const;
 
 const translations = Object.fromEntries(
@@ -81,6 +68,5 @@ export {
   dontWarn,
   goTo,
   continueText,
-  remember,
   allRightsReserved,
 };
