@@ -1,12 +1,5 @@
 import { codes, LanguageCode } from "../locales/countries";
 
-const loading = {
-  pt: "A carregar...",
-  es: "Cargando...",
-  en: "Loading...",
-  fr: "Chargement...",
-};
-
 const dialog = {
   first: {
     pt: "O seu idioma guardado difere do idioma atual da página.",
@@ -85,7 +78,6 @@ function getTranslations(lang: LanguageCode) {
 
 export {
   getTranslations,
-  loading,
   dialog,
   dontWarn,
   goTo,
