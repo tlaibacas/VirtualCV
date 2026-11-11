@@ -15,36 +15,35 @@ const dialog = {
   },
 };
 
-const dontWarn = {
-  pt: "Não me avise novamente",
-  es: "No me vuelvas a avisar",
-  en: "Don't warn me again",
-  fr: "Ne plus m'avertir",
-};
-
-const goTo = {
-  pt: "Ir para",
-  es: "Ir a",
-  en: "Go to",
-  fr: "Aller à",
-};
-
-const continueText = {
-  pt: "Continuar",
-  es: "Continuar",
-  en: "Continue",
-  fr: "Continuer",
-};
-
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
-  yes: ["Sim", "Yes", "Si", "Oui"],
+  yes: ["Sim", "Yes", "Sí", "Oui"],
   no: ["Não", "No", "No", "Non"],
   rights: [
     "Todos os direitos reservados.",
     "All rights reserved.",
     "Todos los derechos reservados.",
     "Tous droits réservés.",
+  ],
+  dontWarn: [
+    "Não me avise novamente",
+    "Don't warn me again",
+    "No me vuelvas a avisar",
+    "Ne plus m'avertir",
+  ],
+  goTo: ["Ir para", "Go to", "Ir a", "Aller à"],
+  continueText: ["Continuar", "Continue", "Continuar", "Continuer"],
+  dialogFirst: [
+    "O seu idioma guardado difere do idioma atual da página.",
+    "Your saved language differs from the current page language.",
+    "Su idioma guardado difiere del idioma actual de la página.",
+    "Votre langue enregistrée diffère de la langue actuelle de la page.",
+  ],
+  dialogSecond: [
+    "Deseja continuar ou ir para o seu idioma preferido?",
+    "Would you like to continue or go to your preferred language?",
+    "¿Desea continuar o ir a su idioma preferido?",
+    "Voulez-vous continuer ou aller à votre langue préférée?",
   ],
 } as const;
 
@@ -61,4 +60,4 @@ function getTranslations(lang: LanguageCode) {
   );
 }
 
-export { getTranslations, dialog, dontWarn, goTo, continueText };
+export { getTranslations };
