@@ -36,17 +36,16 @@ const continueText = {
   fr: "Continuer",
 };
 
-const allRightsReserved = {
-  pt: "Todos os direitos reservados.",
-  es: "Todos los derechos reservados.",
-  en: "All rights reserved.",
-  fr: "Tous droits réservés.",
-};
-
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
   yes: ["Sim", "Yes", "Si", "Oui"],
   no: ["Não", "No", "No", "Non"],
+  rights: [
+    "Todos os direitos reservados.",
+    "All rights reserved.",
+    "Todos los derechos reservados.",
+    "Tous droits réservés.",
+  ],
 } as const;
 
 const translations = Object.fromEntries(
@@ -62,11 +61,4 @@ function getTranslations(lang: LanguageCode) {
   );
 }
 
-export {
-  getTranslations,
-  dialog,
-  dontWarn,
-  goTo,
-  continueText,
-  allRightsReserved,
-};
+export { getTranslations, dialog, dontWarn, goTo, continueText };
