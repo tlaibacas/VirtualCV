@@ -4,13 +4,11 @@ import { Props } from "./types";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Loading from "@/components/main/loading/Loading";
-import type { LanguageCode } from "@/libs/i18n/locales/countries";
 
 export default async function Page({ params }: Props) {
   const { lang } = await params;
   const t = getTranslations(lang);
 
-  const language = lang as LanguageCode;
   return (
     <main className={styles.main}>
       <div>
