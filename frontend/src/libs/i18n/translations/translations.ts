@@ -17,7 +17,7 @@ const translationData = {
     "Ne plus m'avertir",
   ],
   goTo: ["Ir para", "Go to", "Ir a", "Aller à"],
-  continueText: ["Continuar", "Continue", "Continuar", "Continuer"],
+  continue: ["Continuar", "Continue", "Continuar", "Continuer"],
   dialogFirst: [
     "O seu idioma guardado difere do idioma atual da página.",
     "Your saved language differs from the current page language.",
