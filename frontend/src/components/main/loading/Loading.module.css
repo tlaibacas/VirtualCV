@@ -4,7 +4,7 @@
   overflow: hidden;
   border: 1px solid #777;
   border-radius: 3px;
-  background: #111;
+  background: var(--primary);
   gap: 0.2rem;
   display: flex;
 }
@@ -13,7 +13,7 @@
   display: block;
   width: 10%;
   height: 100%;
-  background: linear-gradient(#54baff, #0874ce, #004b91);
+  background: linear-gradient(to bottom, var(--secondary), var(--primary));
   animation: boot 2s linear infinite;
 }
 
@@ -26,17 +26,18 @@
     transform: translateX(1000%);
   }
 }
+
 @media (prefers-reduced-motion: reduce) {
   .progress span {
-    animation: loadingPulse 2s ease-in-out infinite alternate;
-    transform: none;
     width: 35%;
+    animation: loadingPulse 2s ease-in-out infinite alternate;
   }
 
   @keyframes loadingPulse {
     from {
       opacity: 0.5;
     }
+
     to {
       opacity: 1;
     }
