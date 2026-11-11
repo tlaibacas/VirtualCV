@@ -13,7 +13,7 @@ body {
     var(--secondary) 100%
   );
 
-  animation: gradient 3s forwards;
+  animation: gradient 5s forwards;
 }
 
 @keyframes gradient {
@@ -23,5 +23,21 @@ body {
 
   to {
     --primary-position: 50%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation-duration: 10s;
+  }
+
+  @keyframes gradient {
+    from {
+      --primary-position: 100%;
+    }
+
+    to {
+      --primary-position: 70%;
+    }
   }
 }
