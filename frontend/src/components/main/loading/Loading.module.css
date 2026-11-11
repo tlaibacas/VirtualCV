@@ -26,3 +26,19 @@
     transform: translateX(1000%);
   }
 }
+@media (prefers-reduced-motion: reduce) {
+  .progress span {
+    animation: loadingPulse 2s ease-in-out infinite alternate;
+    transform: none;
+    width: 35%;
+  }
+
+  @keyframes loadingPulse {
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
