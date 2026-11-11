@@ -1,19 +1,42 @@
 "use client";
 
-import { useState } from "react";
-import { locales } from "@/libs/i18n/locales/countries";
+import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./LangBar.module.css";
 import Image from "next/image";
+import { locales } from "@/libs/i18n/locales/countries";
+import styles from "./LangBar.module.css";
 
-function LangBar(langProp?: { langProp: string | undefined }) {
+function LangBar({ langProp }: { langProp?: string }) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(langProp?.langProp || "en");
+  const [selected, setSelected] = useState(langProp || "en");
+
+  const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
+
   const current = locales[selected as keyof typeof locales];
 
+  useEffect(() => {
+    if (!open) return;
+
+    function handleClickOutside(event: PointerEvent) {
+      if (navRef.current && !navRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("pointerdown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("pointerdown", handleClickOutside);
+    };
+  }, [open]);
+
   return (
-    <nav className={styles.langBar} aria-label="Language selection">
+    <nav
+      ref={navRef}
+      className={styles.langBar}
+      aria-label="Language selection"
+    >
       <button
         type="button"
         className={styles.trigger}
