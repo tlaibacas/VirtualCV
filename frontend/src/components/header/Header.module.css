@@ -35,3 +35,8 @@
   color: inherit;
   background: inherit;
 }
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition-duration: 0.01ms;
+  }
+}
