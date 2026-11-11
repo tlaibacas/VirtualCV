@@ -6,19 +6,15 @@ import Remember from "@/components/card/remember/Remember";
 import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
 import { invalid } from "@/libs/cookies/cookieHandler";
-import {
-  dialog,
-  dontWarn,
-  goTo,
-  continueText,
-} from "@/libs/i18n/translations/translations";
 import { Props } from "./types";
+import { getTranslations } from "@/libs/i18n/translations/translations";
 
 export default function CookieDialog({ cookie }: Props) {
   const [, setRemember] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-
+  const lang = cookie?.code === "NOT_EQUAL" ? cookie.languageValue : "en";
+  const t = getTranslations(lang);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) {
@@ -49,18 +45,18 @@ export default function CookieDialog({ cookie }: Props) {
       ) : (
         <>
           <p>
-            {dialog.first[cookie.languageValue] ||
+            {t.dialogFirst ||
               "Your saved language differs from the current page language."}
           </p>
           <p>
-            {dialog.second[cookie.languageValue] ||
+            {t.dialogSecond ||
               "Would you like to continue or go to your preferred language?"}
           </p>
-          <p>{dontWarn[cookie.languageValue] || "Don&apos;t warn me again"}</p>
+          <p>{t.dontWarn || "Don&apos;t warn me again"}</p>
           <Remember langProp={cookie.languageValue} onChange={setRemember} />
           <div>
             <button onClick={() => router.push(`/${cookie.languageValue}`)}>
-              {goTo[cookie.languageValue] || "Go to"} {cookie.languageName}
+              {t.goTo || "Go to"} {cookie.languageName}
             </button>
             <button
               onClick={() => {
@@ -70,7 +66,7 @@ export default function CookieDialog({ cookie }: Props) {
                 router.refresh();
               }}
             >
-              {continueText[cookie.languageValue] || "Continue"}
+              {t.continue || "Continue"}
             </button>
           </div>
         </>
