@@ -60,7 +60,6 @@ const allRightsReserved = {
 
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
-  welcome: ["Bem-vindo", "Welcome", "Bienvenido", "Bienvenue"],
 } as const;
 
 const translations = Object.fromEntries(
