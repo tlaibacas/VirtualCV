@@ -1,3 +1,5 @@
+import { codes, LanguageCode } from "../locales/countries";
+
 const loading = {
   pt: "A carregar...",
   es: "Cargando...",
@@ -63,7 +65,26 @@ const allRightsReserved = {
   fr: "Tous droits réservés.",
 };
 
+const translationData = {
+  loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
+  welcome: ["Bem-vindo", "Welcome", "Bienvenido", "Bienvenue"],
+} as const;
+
+const translations = Object.fromEntries(
+  Object.entries(translationData).map(([key, values]) => [
+    key,
+    Object.fromEntries(values.map((value, index) => [codes[index], value])),
+  ]),
+);
+
+function getTranslations(lang: LanguageCode) {
+  return Object.fromEntries(
+    Object.entries(translations).map(([key, values]) => [key, values[lang]]),
+  );
+}
+
 export {
+  getTranslations,
   loading,
   dialog,
   dontWarn,
