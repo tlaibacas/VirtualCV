@@ -40,6 +40,24 @@
 .dialog:not([open]) {
   display: none;
 }
+.dialog button {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: var(--extras);
+  font: inherit;
+  cursor: pointer;
+}
+
+.dialog button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .dialog button:hover {
+    filter: brightness(1.1);
+  }
+}
 
 @keyframes gradient {
   from {
@@ -54,6 +72,10 @@
   .invalid::backdrop,
   .warning::backdrop {
     animation-duration: 10s;
+  }
+
+  .dialog button:hover {
+    filter: none;
   }
 
   @keyframes gradient {
