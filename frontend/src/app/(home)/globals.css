@@ -14,7 +14,6 @@
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-
   --text: #fff;
   --primary: #111;
   --secondary: #003b66;
