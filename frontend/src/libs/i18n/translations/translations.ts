@@ -1,20 +1,5 @@
 import { codes, LanguageCode } from "../locales/countries";
 
-const dialog = {
-  first: {
-    pt: "O seu idioma guardado difere do idioma atual da página.",
-    es: "Su idioma guardado difiere del idioma actual de la página.",
-    en: "Your saved language differs from the current page language.",
-    fr: "Votre langue enregistrée diffère de la langue actuelle de la page.",
-  },
-  second: {
-    pt: "Deseja continuar ou ir para o seu idioma preferido?",
-    es: "¿Desea continuar o ir a su idioma preferido?",
-    en: "Would you like to continue or go to your preferred language?",
-    fr: "Voulez-vous continuer ou aller à votre langue préférée?",
-  },
-};
-
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
   yes: ["Sim", "Yes", "Sí", "Oui"],
