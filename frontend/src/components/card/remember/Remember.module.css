@@ -72,3 +72,12 @@
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .slider,
+  .slider::before,
+  .yes,
+  .no {
+    transition-duration: 0.01ms;
+  }
+}
