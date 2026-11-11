@@ -66,3 +66,14 @@
 .switch input:checked + .slider {
   background-color: var(--secondary);
 }
+@media (prefers-reduced-motion: reduce) {
+  .slider,
+  .slider::before,
+  .sun {
+    transition-duration: 0.01ms;
+  }
+
+  .switch input:checked + .slider::before {
+    transform: translateX(2.57rem);
+  }
+}
