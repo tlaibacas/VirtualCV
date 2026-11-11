@@ -1,5 +1,8 @@
 import "@/app/(home)/globals.css";
-import { loading } from "@/libs/i18n/translations/translations";
+import {
+  getTranslations,
+  loading,
+} from "@/libs/i18n/translations/translations";
 import { Props } from "./types";
 import Image from "next/image";
 import styles from "./page.module.css";
@@ -8,6 +11,8 @@ import type { LanguageCode } from "@/libs/i18n/locales/countries";
 
 export default async function Page({ params }: Props) {
   const { lang } = await params;
+  const t = getTranslations(lang);
+
   const language = lang as LanguageCode;
   return (
     <main className={styles.main}>
@@ -25,7 +30,7 @@ export default async function Page({ params }: Props) {
         </div>
 
         <div className={styles.loading}>
-          <span>{loading[language] || "Loading..."}</span>
+          <span>{t.loading || "Loading..."}</span>
           <Loading />
         </div>
       </div>
