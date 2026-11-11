@@ -102,3 +102,21 @@
   text-align: center;
   text-wrap: balance;
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .main {
+    animation-duration: 0.3s;
+  }
+
+  .card {
+    transition-duration: 0.01ms;
+  }
+
+  .card:active {
+    transform: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+}
