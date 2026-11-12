@@ -1,4 +1,3 @@
-
 "use client";
 
 import Theme from "./themeButton/Theme";
@@ -19,7 +18,7 @@ export default function Header({
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   function clearHideTimeout() {
-    if (timeoutRef.current) {
+    if (timeoutRef.current !== null) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
@@ -39,6 +38,14 @@ export default function Header({
     setHidden((previous) => !previous);
   }
 
+  // Esconder após a montagem
+  useEffect(() => {
+    hideAfterDelay();
+
+    return clearHideTimeout;
+  }, []);
+
+  // Eventos de interação
   useEffect(() => {
     function handleWheel(event: WheelEvent) {
       clearHideTimeout();
@@ -85,17 +92,8 @@ export default function Header({
       window.removeEventListener("wheel", handleWheel);
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("mousemove", handleMouseMove);
-      clearHideTimeout();
     };
   }, [hidden]);
-
-  useEffect(() => {
-    if (!langProp) return;
-
-    hideAfterDelay();
-
-    return clearHideTimeout;
-  }, [langProp]);
 
   return (
     <header
