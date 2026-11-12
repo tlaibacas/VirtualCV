@@ -1,3 +1,4 @@
+
 "use client";
 
 import Theme from "./themeButton/Theme";
@@ -6,20 +7,41 @@ import styles from "./Header.module.css";
 import LangBar from "./langBar/LangBar";
 import { HeaderProps } from "./types";
 
+const HIDE_DELAY = 1500;
+
 export default function Header({
   initialTheme,
   langProp,
   pathProp,
 }: HeaderProps) {
   const [hidden, setHidden] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  function clearHideTimeout() {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  }
+
+  function hideAfterDelay() {
+    clearHideTimeout();
+
+    timeoutRef.current = setTimeout(() => {
+      setHidden(true);
+      timeoutRef.current = null;
+    }, HIDE_DELAY);
+  }
+
+  function handleToggle() {
+    clearHideTimeout();
+    setHidden((previous) => !previous);
+  }
 
   useEffect(() => {
     function handleWheel(event: WheelEvent) {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
+      clearHideTimeout();
 
       if (event.deltaY > 0) {
         setHidden(true);
@@ -28,63 +50,65 @@ export default function Header({
       }
     }
 
-    window.addEventListener("wheel", handleWheel, { passive: true });
+    function handlePointerDown(event: PointerEvent) {
+      if (
+        event.pointerType === "touch" &&
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node) &&
+        !hidden
+      ) {
+        hideAfterDelay();
+      }
+    }
 
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, []);
-
-  useEffect(() => {
-    if (!langProp) return;
-
-    const timeout = setTimeout(() => {
-      setHidden(true);
-    }, 1500);
-
-    return () => clearTimeout(timeout);
-  }, [langProp]);
-
-  useEffect(() => {
     function handleMouseMove(event: MouseEvent) {
       if (event.clientY <= 10) {
-        if (timeoutRef.current) {
-          clearTimeout(timeoutRef.current);
-          timeoutRef.current = null;
-        }
-
+        clearHideTimeout();
         setHidden(false);
         return;
       }
 
-      if (timeoutRef.current) return;
-
-      timeoutRef.current = setTimeout(() => {
-        setHidden(true);
-        timeoutRef.current = null;
-      }, 1500);
+      if (
+        headerRef.current &&
+        !headerRef.current.contains(event.target as Node) &&
+        !hidden
+      ) {
+        hideAfterDelay();
+      }
     }
 
-    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("wheel", handleWheel, { passive: true });
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("mousemove", handleMouseMove);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
-
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
+      window.removeEventListener("wheel", handleWheel);
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("mousemove", handleMouseMove);
+      clearHideTimeout();
     };
-  }, []);
+  }, [hidden]);
+
+  useEffect(() => {
+    if (!langProp) return;
+
+    hideAfterDelay();
+
+    return clearHideTimeout;
+  }, [langProp]);
 
   return (
-    <header className={`${styles.header} ${hidden ? styles.hidden : ""}`}>
+    <header
+      ref={headerRef}
+      className={`${styles.header} ${hidden ? styles.hidden : ""}`}
+    >
       {pathProp !== "/" && <LangBar langProp={langProp} />}
       <Theme initialTheme={initialTheme} />
 
       <button
         type="button"
         className={styles.toggle}
-        onClick={() => setHidden((previous) => !previous)}
+        onClick={handleToggle}
         aria-label={hidden ? "Show header" : "Hide header"}
         aria-expanded={!hidden}
       >
