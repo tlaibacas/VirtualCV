@@ -1,12 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import Theme from "./themeButton/Theme";
-import { useEffect, useRef, useState } from "react";
-import styles from "./Header.module.css";
 import LangBar from "./langBar/LangBar";
+import styles from "./Header.module.css";
 import { HeaderProps } from "./types";
-
-const HIDE_DELAY = 1500;
 
 export default function Header({
   initialTheme,
@@ -16,18 +14,24 @@ export default function Header({
   const [hidden, setHidden] = useState(false);
 
   return (
-    <header className={`${styles.header} ${hidden ? styles.hidden : ""}`}>
-      {pathProp !== "/" && <LangBar langProp={langProp} />}
-      <Theme initialTheme={initialTheme} />
+    <div className={styles.headerArea}>
+      <div className={styles.hoverZone} />
 
-      <button
-        type="button"
-        className={styles.toggle}
-        aria-label={hidden ? "Show header" : "Hide header"}
-        aria-expanded={!hidden}
-      >
-        {hidden ? "▼" : "▲"}
-      </button>
-    </header>
+      <header className={`${styles.header} ${hidden ? styles.hidden : ""}`}>
+        {pathProp !== "/" && <LangBar langProp={langProp} />}
+
+        <Theme initialTheme={initialTheme} />
+
+        <button
+          type="button"
+          className={styles.toggle}
+          onClick={() => setHidden(!hidden)}
+          aria-label={hidden ? "Show header" : "Hide header"}
+          aria-expanded={!hidden}
+        >
+          {hidden ? "▼" : "▲"}
+        </button>
+      </header>
+    </div>
   );
 }
