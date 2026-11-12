@@ -51,6 +51,7 @@
 
 .switch input:checked + .slider .moon {
   transform: translate(2.57rem, -50%) rotate(360deg);
+  filter: brightness(0.4);
 }
 
 .switch input:not(:checked) + .slider .sun {
