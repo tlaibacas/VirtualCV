@@ -35,31 +35,35 @@ export default function Header({
 
   function handleToggle() {
     clearHideTimeout();
-    setHidden((previous) => !previous);
+
+    setHidden((previous) => {
+      if (!previous) {
+        return true;
+      }
+
+      return false;
+    });
   }
 
-  // Esconder após a montagem
   useEffect(() => {
     hideAfterDelay();
 
     return clearHideTimeout;
   }, []);
 
-  // Eventos de interação
   useEffect(() => {
     function handleWheel(event: WheelEvent) {
-      clearHideTimeout();
-
       if (event.deltaY > 0) {
+        clearHideTimeout();
         setHidden(true);
       } else if (event.deltaY < 0) {
+        clearHideTimeout();
         setHidden(false);
       }
     }
 
     function handlePointerDown(event: PointerEvent) {
       if (
-        event.pointerType === "touch" &&
         headerRef.current &&
         !headerRef.current.contains(event.target as Node) &&
         !hidden
@@ -75,11 +79,11 @@ export default function Header({
         return;
       }
 
-      if (
-        headerRef.current &&
-        !headerRef.current.contains(event.target as Node) &&
-        !hidden
-      ) {
+      if (!headerRef.current) return;
+
+      if (headerRef.current.contains(event.target as Node)) {
+        clearHideTimeout();
+      } else if (!hidden) {
         hideAfterDelay();
       }
     }
@@ -92,6 +96,7 @@ export default function Header({
       window.removeEventListener("wheel", handleWheel);
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("mousemove", handleMouseMove);
+      clearHideTimeout();
     };
   }, [hidden]);
 
