@@ -46,8 +46,13 @@
 }
 
 @media (pointer: none), (pointer: coarse) {
+  .header {
+    animation: hideHeader 0.2s ease 1.5s forwards;
+  }
+
   .header.hidden {
     transform: translateY(-120%);
+    animation: none;
   }
 
   .toggle {
@@ -60,6 +65,12 @@
     border: 0;
     color: inherit;
     background: inherit;
+  }
+}
+
+@keyframes hideHeader {
+  to {
+    transform: translateY(-120%);
   }
 }
 
