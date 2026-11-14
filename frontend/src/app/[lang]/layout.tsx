@@ -9,7 +9,7 @@ import {
   getTheme,
 } from "@/libs/cookies/cookieHandler";
 
-import CookieDialog from "@/components/popUp/CookieDialog";
+import CookieDialog from "@/components/dialogs/cookiesDialog/CookieDialog";
 import Header from "@/components/header/Header";
 import Footer from "@/components/footer/Footer";
 

@@ -6,7 +6,7 @@ import Remember from "@/components/card/remember/Remember";
 import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
 import { invalid } from "@/libs/cookies/cookieHandler";
-import { Props } from "./types";
+import { Props } from "../types";
 import { getTranslations } from "@/libs/i18n/translations/translations";
 
 export default function CookieDialog({ cookie }: Props) {
