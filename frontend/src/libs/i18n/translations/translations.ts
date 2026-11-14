@@ -39,10 +39,8 @@ const translations = Object.fromEntries(
   ]),
 );
 
-function getTranslations(lang: LanguageCode) {
+export function getTranslations(lang: LanguageCode) {
   return Object.fromEntries(
     Object.entries(translations).map(([key, values]) => [key, values[lang]]),
   );
 }
-
-export { getTranslations };

@@ -1,12 +1,11 @@
-import type { Props } from "./types";
-export default async function Page({ params }: Props) {
+import type { PageProps } from "./types";
+
+export default async function Page({ params }: PageProps) {
   const { lang, slug } = await params;
 
   return (
-    <main>
-      <h1>
-        Page: {slug}, with lang: {lang}
-      </h1>
-    </main>
+    <p>
+      {lang}, {slug}
+    </p>
   );
 }
