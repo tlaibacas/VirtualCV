@@ -6,7 +6,6 @@ import { Props } from "./types";
 import Image from "next/image";
 import styles from "./page.module.css";
 import Loading from "@/components/main/loading/Loading";
-
 export default async function Page({ params }: Props) {
   const { lang } = await params;
 

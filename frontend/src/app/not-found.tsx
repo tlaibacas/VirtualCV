@@ -1,11 +1,4 @@
-import WrongLang from "@/components/dialogs/wrongLang/WrongDialog";
-
-export const value = "WRONG_LANG";
-export default function NotFound(val?: string) {
-  if (val === value) {
-    <WrongLang val={val} />;
-  }
-
+export default function NotFound() {
   return (
     <html lang="en">
       <body>
