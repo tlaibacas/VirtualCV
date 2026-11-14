@@ -1,6 +1,4 @@
-type Props = {
-  params: Promise<{ lang: string; slug: string }>;
-};
+import type { Props } from "./types";
 export default async function Page({ params }: Props) {
   const { lang, slug } = await params;
 
