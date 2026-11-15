@@ -12,11 +12,9 @@ export default async function Home() {
   const cookieStore = await cookies();
 
   const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
-  const languageVal = cookieStore.get("lang")?.value as
-    | LanguageCode
-    | undefined;
+  const langVal = cookieStore.get("lang")?.value as LanguageCode | undefined;
 
-  const preferences = getInitialPreferences(themeVal, languageVal);
+  const preferences = getInitialPreferences(themeVal, langVal);
 
   if (preferences.languageVal) {
     redirect(`/${preferences.languageVal}`);
