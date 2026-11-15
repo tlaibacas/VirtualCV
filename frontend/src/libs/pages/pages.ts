@@ -1,5 +1,5 @@
 import { codes, LanguageCode } from "../i18n/locales/countries";
-
+import { PageKey, PageSlug } from "./types";
 const pages = {
   about: ["sobre", "about", "sobre", "a-propos"],
 } as const;
@@ -15,13 +15,30 @@ const createPages = {
   component: Object.fromEntries(
     Object.keys(pages).map((key) => [
       key,
-      () => import(`@/components/pages/${key}`),
+      () => import(`@/libs/pages/content/${key}`),
     ]),
   ),
+} as {
+  [K in PageKey]: Record<LanguageCode, string>;
+} & {
+  slug: Record<LanguageCode, LanguageCode>;
+  component: Record<PageKey, () => Promise<unknown>>;
 };
 
-export function getTranslations(lang: LanguageCode, slug: string) {
-  const page = Object.values(createPages).find((values) =>
-    (Object.values(values) as string[]).includes(slug),
+function getTranslations(lang: LanguageCode, slug: PageSlug) {
+  const page = Object.entries(pages).find(([, values]) =>
+    (values as readonly string[]).includes(slug),
   );
+
+  if (!page) return null;
+
+  const key = page[0] as PageKey;
+
+  return {
+    key,
+    ...createPages[key],
+    component: createPages.component[key],
+  };
 }
+
+export { getTranslations, pages };
