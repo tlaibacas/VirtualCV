@@ -10,14 +10,14 @@ type Not = typeof not;
 
 function getInitialPreferences(
   themeVal: ThemeType | undefined,
-  languageVal: LanguageCode | undefined,
+  langVal: LanguageCode | undefined,
 ): {
   themeVal: ThemeType | undefined;
   languageVal: LanguageCode | undefined;
 } {
   return {
     themeVal,
-    languageVal,
+    languageVal: langVal,
   };
 }
 
