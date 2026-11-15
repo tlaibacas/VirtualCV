@@ -14,19 +14,15 @@ export default async function Home() {
   const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
   const langVal = cookieStore.get("lang")?.value as LanguageCode | undefined;
 
-  const preferences = getInitialPreferences(themeVal, langVal);
+  const pref = getInitialPreferences(themeVal, langVal);
 
-  if (preferences.languageVal) {
-    redirect(`/${preferences.languageVal}`);
+  if (pref.languageVal) {
+    redirect(`/${pref.languageVal}`);
   }
 
   return (
     <>
-      <Header
-        initialTheme={preferences.themeVal}
-        langProp={undefined}
-        pathProp="/"
-      />
+      <Header initialTheme={pref.themeVal} langProp={undefined} pathProp="/" />
 
       <main>
         <LangCards />
