@@ -13,7 +13,6 @@ import { notFound } from "next/navigation";
 
 export default async function Page({ params }: PageProps) {
   const { lang } = await params;
-  const checkLang = isSupportedLanguage(lang);
   if (!isSupportedLanguage(lang)) notFound();
   const cookieStore = await cookies();
   const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
