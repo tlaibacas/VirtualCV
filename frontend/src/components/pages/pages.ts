@@ -1,4 +1,4 @@
-import { codes, LanguageCode } from "../i18n/locales/countries";
+import { codes, LanguageCode } from "../../libs/i18n/locales/countries";
 import { PageKey, PageSlug } from "./types";
 const pages = {
   about: ["sobre", "about", "sobre", "a-propos"],
