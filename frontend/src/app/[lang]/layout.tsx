@@ -1,11 +1,16 @@
-import { notFound } from "next/navigation";
-import { isSupportedLanguage } from "@/libs/cookies/cookieHandler";
 import type { LayoutProps } from "./types";
+import { cookies } from "next/headers";
+import { getTheme } from "@/libs/cookies/cookieHandler";
 
 export default async function Layout({ children, params }: LayoutProps) {
   const { lang } = await params;
 
-  if (!isSupportedLanguage(lang)) notFound();
+  const cookieStore = await cookies();
+  const theme = getTheme(cookieStore.get("theme")?.value);
 
-  return children;
+  return (
+    <html lang={lang} data-theme={theme}>
+      <body>{children}</body>
+    </html>
+  );
 }

@@ -1,14 +1,12 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-
+import "./page.css";
 import { getInitialPreferences } from "@/libs/cookies/cookieHandler";
 import type { ThemeType } from "@/components/header/themeButton/types";
 import type { LanguageCode } from "@/libs/i18n/locales/countries";
 
 import Header from "@/components/header/Header";
 import LangCards from "@/components/card/LangCards";
-
-import "./page.css";
 
 export default async function Home() {
   const cookieStore = await cookies();
