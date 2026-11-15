@@ -1,6 +1,5 @@
 import { ThemeType } from "@/components/header/themeButton/types";
-import { locales, codes, LanguageCode } from "../i18n/locales/countries";
-import { CookieResult } from "./types";
+import { codes, LanguageCode } from "../i18n/locales/countries";
 
 const inv = "INVALID";
 const not = "NOT_EQUAL";
@@ -31,30 +30,6 @@ function redirectToSavedLanguage(
   return languageVal;
 }
 
-function getLanguageLayoutData(
-  langVal: string | undefined,
-  lang: LanguageCode,
-  warnVal: string | undefined,
-): { cookieResult: CookieResult | undefined } {
-  if (!langVal) return { cookieResult: undefined };
-
-  if (!isSupportedLanguage(langVal)) {
-    return { cookieResult: { code: inv } };
-  }
-
-  if (langVal !== lang && warnVal !== "true") {
-    return {
-      cookieResult: {
-        code: not,
-        languageValue: langVal,
-        languageName: locales[langVal].language,
-      },
-    };
-  }
-
-  return { cookieResult: undefined };
-}
-
 function getTheme(themeVal: string | undefined): ThemeType | undefined {
   return themeVal === "light" || themeVal === "dark" ? themeVal : undefined;
 }
@@ -63,7 +38,6 @@ export {
   redirectToSavedLanguage,
   getInitialPreferences,
   isSupportedLanguage,
-  getLanguageLayoutData,
   getTheme,
   inv as invalid,
 };
