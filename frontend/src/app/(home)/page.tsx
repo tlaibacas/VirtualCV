@@ -1,7 +1,10 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import "./page.css";
-import { getInitialPreferences } from "@/libs/cookies/cookieHandler";
+import {
+  getInitialPreferences,
+  isSupportedLanguage,
+} from "@/libs/cookies/cookieHandler";
 import type { ThemeType } from "@/components/header/themeButton/types";
 import type { LanguageCode } from "@/libs/i18n/locales/countries";
 
@@ -14,11 +17,11 @@ export default async function Home() {
   const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
   const langVal = cookieStore.get("lang")?.value as LanguageCode | undefined;
 
-  const pref = getInitialPreferences(themeVal, langVal);
-
-  if (pref.languageVal) {
-    redirect(`/${pref.languageVal}`);
+  if (isSupportedLanguage(langVal as LanguageCode)) {
+    redirect(`/${langVal}`);
   }
+
+  const pref = getInitialPreferences(themeVal, langVal);
 
   return (
     <>
