@@ -17,7 +17,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <>
-      <Header initialTheme={pref.themeVal} langProp={pref.languageVal} />
+      <Header initialTheme={pref.themeVal} langProp={lang} />
       <Load lang={lang} />
       <Footer langProp={lang} />
     </>
