@@ -13,9 +13,11 @@ export default async function Home() {
 
   const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
 
-  const theme = getTheme(themeVal);
+  const theme: ThemeType | undefined = getTheme(themeVal);
 
-  const langVal = cookieStore.get("lang")?.value as LanguageCode | undefined;
+  const langVal: LanguageCode | undefined = cookieStore.get("lang")?.value as
+    | LanguageCode
+    | undefined;
   if (isSupportedLanguage(langVal as LanguageCode)) {
     redirect(`/${langVal}`);
   }
