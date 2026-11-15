@@ -1,6 +1,7 @@
 import type { LayoutProps } from "./types";
 import { cookies } from "next/headers";
 import { getTheme } from "@/libs/cookies/cookieHandler";
+import "@/app/(home)/globals.css";
 
 export default async function Layout({ children, params }: LayoutProps) {
   const { lang } = await params;
