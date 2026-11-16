@@ -1,11 +1,11 @@
 import { ThemeType } from "@/components/header/themeButton/types";
 import { codes, LanguageCode } from "../i18n/locales/countries";
 
-const inv = "INVALID";
-const not = "NOT_EQUAL";
+const INVALID = "INVALID";
+const NOTVALID = "NOT_EQUAL";
 
-type Inv = typeof inv;
-type Not = typeof not;
+type Inv = typeof INVALID;
+type Not = typeof NOTVALID;
 
 function getInitialPreferences(
   themeVal: ThemeType | undefined,
@@ -39,7 +39,7 @@ export {
   getInitialPreferences,
   isSupportedLanguage,
   getTheme,
-  inv as invalid,
+  INVALID,
 };
 
 export type { Inv, Not };
