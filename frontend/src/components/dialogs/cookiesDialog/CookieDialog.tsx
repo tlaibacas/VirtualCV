@@ -8,7 +8,7 @@ import { clearCookies, createCookie } from "@/libs/cookies/cookies";
 import { getTranslations } from "@/libs/i18n/translations/translations";
 import { WarningProps } from "./types";
 
-export function WrongCookie() {
+function WrongCookie() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
   useEffect(() => {
@@ -35,7 +35,7 @@ export function WrongCookie() {
   );
 }
 
-export function DifCookie({ val }: WarningProps) {
+function DifCookie({ val }: WarningProps) {
   const [remember, setRemember] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
@@ -91,3 +91,5 @@ export function DifCookie({ val }: WarningProps) {
     </dialog>
   );
 }
+
+export { DifCookie, WrongCookie };
