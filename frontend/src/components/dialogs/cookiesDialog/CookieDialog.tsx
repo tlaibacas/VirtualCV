@@ -7,6 +7,7 @@ import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
 import { getTranslations } from "@/libs/i18n/translations/translations";
 import { WarningProps } from "./types";
+import { localeData } from "@/libs/i18n/locales/countries";
 
 function WrongCookie() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -39,8 +40,9 @@ function DifCookie({ val }: WarningProps) {
   const [remember, setRemember] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-
+  const codes = localeData.map(([code]) => code);
   const lang = val.langVal ?? "en";
+  const index = codes.indexOf(lang);
   const t = getTranslations(lang);
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -72,7 +74,7 @@ function DifCookie({ val }: WarningProps) {
             router.push(`/${val.langVal}`);
           }}
         >
-          {t.goTo || "Go to"} {val.langName}
+          {t.goTo || "Go to"} {localeData[index][2]}
         </button>
 
         <button
