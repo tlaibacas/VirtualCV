@@ -6,6 +6,7 @@ import { ThemeType } from "@/components/header/themeButton/types";
 import { cookies } from "next/headers";
 import { getTheme, isSupportedLanguage } from "@/libs/cookies/cookieHandler";
 import { notFound } from "next/navigation";
+import { WrongCookie } from "@/components/dialogs/cookiesDialog/CookieDialog";
 
 export default async function Page({ params }: PageProps) {
   const { lang } = await params;
@@ -18,14 +19,15 @@ export default async function Page({ params }: PageProps) {
     cookieStore.get("theme")?.value as ThemeType | undefined,
   );
 
-  if (isSupportedLanguage(langVal)) {
+  if (!isSupportedLanguage(langVal)) {
+    return <WrongCookie />;
+  } else {
+    return (
+      <>
+        <Header initialTheme={theme} langProp={lang} />
+        <Load lang={lang} />
+        <Footer langProp={lang} />
+      </>
+    );
   }
-
-  return (
-    <>
-      <Header initialTheme={theme} langProp={lang} />
-      <Load lang={lang} />
-      <Footer langProp={lang} />
-    </>
-  );
 }
