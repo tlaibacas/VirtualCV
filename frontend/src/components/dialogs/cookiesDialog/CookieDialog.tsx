@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -12,6 +13,7 @@ import { localeData } from "@/libs/i18n/locales/countries";
 function WrongCookie() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
+
   useEffect(() => {
     const dialog = dialogRef.current;
 
@@ -40,10 +42,11 @@ function DifCookie({ val }: WarningProps) {
   const [remember, setRemember] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-  const codes = localeData.map(([code]) => code);
+
   const lang = val.langVal ?? "en";
-  const index = codes.indexOf(lang);
+  const langName = localeData.find(([code]) => code === lang)?.[2];
   const t = getTranslations(lang);
+
   useEffect(() => {
     const dialog = dialogRef.current;
 
@@ -51,6 +54,7 @@ function DifCookie({ val }: WarningProps) {
       dialog.showModal();
     }
   }, []);
+
   return (
     <dialog ref={dialogRef} className={`${styles.dialog} ${styles.warning}`}>
       <p>
@@ -75,7 +79,7 @@ function DifCookie({ val }: WarningProps) {
             router.push(`/${val.langVal}`);
           }}
         >
-          {t.goTo || "Go to"} {localeData[index][2]}
+          {t.goTo || "Go to"} {langName}
         </button>
 
         <button
