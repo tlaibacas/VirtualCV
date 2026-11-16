@@ -23,4 +23,4 @@ type LanguageAlt = (typeof localeData)[number][1];
 type LanguageName = (typeof localeData)[number][2];
 
 export type { LanguageCode, LanguageAlt, LanguageName };
-export { locales, codes };
+export { locales, codes, localeData };
