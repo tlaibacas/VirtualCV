@@ -9,27 +9,27 @@ import { invalid } from "@/libs/cookies/cookieHandler";
 import { Props } from "./types";
 import { getTranslations } from "@/libs/i18n/translations/translations";
 
-export default function CookieDialog({ cookie }: Props) {
+export default function CookieDialog({ val }: Props) {
   const [, setRemember] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-  const lang = cookie?.code === "NOT_EQUAL" ? cookie.languageValue : "en";
+  const lang = val?.code === "NOT_EQUAL" ? val.langVal : "en";
   const t = getTranslations(lang);
   useEffect(() => {
     const dialog = dialogRef.current;
     if (dialog && !dialog.open) {
       dialog.showModal();
     }
-  }, [cookie.code]);
+  }, [val.code]);
 
   return (
     <dialog
       ref={dialogRef}
       className={`${styles.dialog} ${
-        cookie.code === invalid ? styles.invalid : styles.warning
+        val.code === invalid ? styles.invalid : styles.warning
       }`}
     >
-      {cookie.code === invalid ? (
+      {val.code === invalid ? (
         <>
           <p>Your saved language is invalid or the cookie is corrupted.</p>
           <button
@@ -53,10 +53,10 @@ export default function CookieDialog({ cookie }: Props) {
               "Would you like to continue or go to your preferred language?"}
           </p>
           <p>{t.dontWarn || "Don&apos;t warn me again"}</p>
-          <Remember langProp={cookie.languageValue} onChange={setRemember} />
+          <Remember langProp={val.langVal} onChange={setRemember} />
           <div>
-            <button onClick={() => router.push(`/${cookie.languageValue}`)}>
-              {t.goTo || "Go to"} {cookie.languageName}
+            <button onClick={() => router.push(`/${val.langVal}`)}>
+              {t.goTo || "Go to"} {val.langName}
             </button>
             <button
               onClick={() => {

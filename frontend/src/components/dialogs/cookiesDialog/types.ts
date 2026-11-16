@@ -1,5 +1,9 @@
-import { CookieResult } from "@/libs/cookies/types";
+import { LanguageCode, LanguageName } from "@/libs/i18n/locales/countries";
 
 export type Props = {
-  cookie: CookieResult;
+  val: {
+    code: "INVALID" | "NOT_EQUAL";
+    langVal: LanguageCode;
+    langName: LanguageName;
+  };
 };
