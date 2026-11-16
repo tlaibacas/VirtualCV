@@ -70,6 +70,7 @@ function DifCookie({ val }: WarningProps) {
       <div>
         <button
           onClick={() => {
+            createCookie("warn", "true", remember ? 604800 : 60);
             dialogRef.current?.close();
             router.push(`/${val.langVal}`);
           }}
@@ -79,10 +80,7 @@ function DifCookie({ val }: WarningProps) {
 
         <button
           onClick={() => {
-            if (remember) {
-              createCookie("warn", "true", 300);
-            }
-
+            createCookie("warn", "true", remember ? 604800 : 60);
             dialogRef.current?.close();
             router.refresh();
           }}
