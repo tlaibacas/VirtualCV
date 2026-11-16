@@ -20,7 +20,7 @@ function WrongCookie() {
   }, []);
 
   return (
-    <dialog ref={dialogRef} className={styles.invalid}>
+    <dialog ref={dialogRef} className={`${styles.dialog} ${styles.invalid}`}>
       <p>Your saved language is invalid or the cookie is corrupted.</p>
 
       <button
@@ -50,7 +50,7 @@ function DifCookie({ val }: WarningProps) {
     }
   }, []);
   return (
-    <dialog ref={dialogRef} className={styles.warning}>
+    <dialog ref={dialogRef} className={`${styles.dialog} ${styles.warning}`}>
       <p>
         {t.dialogFirst ||
           "Your saved language differs from the current page language."}
