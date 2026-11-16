@@ -11,16 +11,15 @@ import LangCards from "@/components/card/LangCards";
 export default async function Home() {
   const cookieStore = await cookies();
 
-  const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
-
-  const theme: ThemeType | undefined = getTheme(themeVal);
-
   const langVal: LanguageCode | undefined = cookieStore.get("lang")?.value as
     | LanguageCode
     | undefined;
   if (isSupportedLanguage(langVal as LanguageCode)) {
     redirect(`/${langVal}`);
   }
+  const themeVal = cookieStore.get("theme")?.value as ThemeType | undefined;
+
+  const theme: ThemeType | undefined = getTheme(themeVal);
   return (
     <>
       <Header initialTheme={theme} langProp={undefined} pathProp="/" />
