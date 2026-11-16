@@ -5,72 +5,89 @@ import { useEffect, useRef, useState } from "react";
 import Remember from "@/components/card/remember/Remember";
 import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
-import { invalid } from "@/libs/cookies/cookieHandler";
-import { Props } from "./types";
 import { getTranslations } from "@/libs/i18n/translations/translations";
+import { WarningProps } from "./types";
 
-export default function CookieDialog({ val }: Props) {
-  const [, setRemember] = useState(false);
+export function WrongCookie() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const router = useRouter();
-  const lang = val?.code === "NOT_EQUAL" ? val.langVal : "en";
-  const t = getTranslations(lang);
   useEffect(() => {
     const dialog = dialogRef.current;
+
     if (dialog && !dialog.open) {
       dialog.showModal();
     }
-  }, [val.code]);
+  }, []);
 
   return (
-    <dialog
-      ref={dialogRef}
-      className={`${styles.dialog} ${
-        val.code === invalid ? styles.invalid : styles.warning
-      }`}
-    >
-      {val.code === invalid ? (
-        <>
-          <p>Your saved language is invalid or the cookie is corrupted.</p>
-          <button
-            onClick={() => {
-              clearCookies("lang", "warn");
-              router.refresh();
-              router.push("/");
-            }}
-          >
-            Go to home
-          </button>
-        </>
-      ) : (
-        <>
-          <p>
-            {t.dialogFirst ||
-              "Your saved language differs from the current page language."}
-          </p>
-          <p>
-            {t.dialogSecond ||
-              "Would you like to continue or go to your preferred language?"}
-          </p>
-          <p>{t.dontWarn || "Don&apos;t warn me again"}</p>
-          <Remember langProp={val.langVal} onChange={setRemember} />
-          <div>
-            <button onClick={() => router.push(`/${val.langVal}`)}>
-              {t.goTo || "Go to"} {val.langName}
-            </button>
-            <button
-              onClick={() => {
-                createCookie("warn", "true", 300);
+    <dialog ref={dialogRef} className={styles.invalid}>
+      <p>Your saved language is invalid or the cookie is corrupted.</p>
 
-                dialogRef.current?.close();
-                router.refresh();
-              }}
-            >
-              {t.continue || "Continue"}
-            </button>
-          </div>
-        </>
-      )}
+      <button
+        onClick={() => {
+          clearCookies("lang", "warn");
+          router.push("/");
+        }}
+      >
+        Go to home
+      </button>
+    </dialog>
+  );
+}
+
+export function DifCookie({ val }: WarningProps) {
+  const [remember, setRemember] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const router = useRouter();
+
+  const lang = val.langVal ?? "en";
+  const t = getTranslations(lang);
+  useEffect(() => {
+    const dialog = dialogRef.current;
+
+    if (dialog && !dialog.open) {
+      dialog.showModal();
+    }
+  }, []);
+  return (
+    <dialog ref={dialogRef} className={styles.warning}>
+      <p>
+        {t.dialogFirst ||
+          "Your saved language differs from the current page language."}
+      </p>
+
+      <p>
+        {t.dialogSecond ||
+          "Would you like to continue or go to your preferred language?"}
+      </p>
+
+      <p>{t.dontWarn || "Don't warn me again"}</p>
+
+      <Remember langProp={val.langVal} onChange={setRemember} />
+
+      <div>
+        <button
+          onClick={() => {
+            dialogRef.current?.close();
+            router.push(`/${val.langVal}`);
+          }}
+        >
+          {t.goTo || "Go to"} {val.langName}
+        </button>
+
+        <button
+          onClick={() => {
+            if (remember) {
+              createCookie("warn", "true", 300);
+            }
+
+            dialogRef.current?.close();
+            router.refresh();
+          }}
+        >
+          {t.continue || "Continue"}
+        </button>
+      </div>
     </dialog>
   );
 }
