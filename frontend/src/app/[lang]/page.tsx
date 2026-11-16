@@ -14,7 +14,6 @@ export default async function Page({ params }: PageProps) {
   const cookieStore = await cookies();
   const langVal: string | undefined = cookieStore.get("lang")?.value;
 
-  const langCookie = isSupportedLanguage(langVal) ? langVal : undefined;
   const theme = getTheme(
     cookieStore.get("theme")?.value as ThemeType | undefined,
   );
