@@ -2,11 +2,11 @@ import { codes, type LanguageCode } from "../../libs/i18n/locales/countries";
 import type { PageKey, PageSlug } from "./types";
 
 const pages = {
-  bluescreen: ["tela-azul", "blue-screen", "pantalla-azul", "ecran-bleu"],
+  bluescreen: ["tela-azul", "bluescreen", "pantalla-azul", "ecran-bleu"],
 } as const;
 
 const components = {
-  bluescreen: () => import("@/components/pages/content/bluescreen"),
+  bluescreen: () => import("@/components/pages/content/Bluescreen"),
 } satisfies Record<PageKey, () => Promise<unknown>>;
 
 const slugData = Object.fromEntries(codes.map((code) => [code, code]));
