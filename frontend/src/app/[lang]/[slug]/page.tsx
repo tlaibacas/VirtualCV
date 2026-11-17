@@ -9,7 +9,7 @@ export default async function Page({ params }: PageProps) {
   const { lang, slug } = await params;
 
   const language = lang as LanguageCode;
-  const value = getTranslations(language, slug as PageSlug);
+  const value = getTranslations(slug as PageSlug);
 
   if (!value) notFound();
 

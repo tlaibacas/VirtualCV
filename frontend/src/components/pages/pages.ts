@@ -9,16 +9,25 @@ const components = {
   about: () => import("@/components/pages/content/About"),
 } satisfies Record<PageKey, () => Promise<unknown>>;
 
+const slugData = Object.fromEntries(codes.map((code) => [code, code]));
+
+const translationData = Object.fromEntries(
+  Object.entries(pages).map(([key, values]) => {
+    const translations = Object.fromEntries(
+      values.map((value, index) => {
+        const code = codes[index];
+
+        return [code, value];
+      }),
+    );
+
+    return [key, translations];
+  }),
+);
+
 const createPages = {
-  slug: Object.fromEntries(codes.map((code) => [code, code])),
-
-  ...Object.fromEntries(
-    Object.entries(pages).map(([key, values]) => [
-      key,
-      Object.fromEntries(values.map((value, index) => [codes[index], value])),
-    ]),
-  ),
-
+  slug: slugData,
+  ...translationData,
   component: components,
 } as {
   [K in PageKey]: Record<LanguageCode, string>;
@@ -27,20 +36,28 @@ const createPages = {
   component: typeof components;
 };
 
-function getTranslations(lang: LanguageCode, slug: PageSlug) {
-  const page = Object.entries(pages).find(([, values]) =>
-    (values as readonly string[]).includes(slug),
-  );
+function getTranslations(slug: PageSlug) {
+  const page = Object.entries(pages).find(([key, values]) => {
+    return (values as readonly string[]).includes(slug);
+  });
 
-  if (!page) return null;
+  if (!page) {
+    return null;
+  }
 
   const key = page[0] as PageKey;
 
-  return {
+  const translations = createPages[key];
+
+  const component = createPages.component[key];
+
+  const result = {
     key,
-    ...createPages[key],
-    component: createPages.component[key],
+    ...translations,
+    component,
   };
+
+  return result;
 }
 
 export { getTranslations, pages };
