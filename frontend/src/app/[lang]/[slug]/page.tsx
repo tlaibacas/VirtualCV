@@ -1,4 +1,4 @@
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { codes, type LanguageCode } from "@/libs/i18n/locales/countries";
 import type { PageProps } from "./types";
 import { getTranslations } from "@/components/pages/pages";
