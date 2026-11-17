@@ -1,9 +1,8 @@
 import { redirect } from "next/navigation";
 import { codes, type LanguageCode } from "@/libs/i18n/locales/countries";
-import type { PageProps } from "./types";
+import type { PageComponent, PageProps } from "./types";
 import { getTranslations } from "@/components/pages/pages";
 import type { PageSlug } from "@/components/pages/types";
-import type { ComponentType } from "react";
 
 export default async function Page({ params }: PageProps) {
   const { lang, slug } = await params;
@@ -23,8 +22,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   const { default: Component } = (await value.component()) as {
-    default: ComponentType;
+    default: PageComponent;
   };
-
-  return <Component />;
+  return <Component lang={lang as LanguageCode} />;
 }
