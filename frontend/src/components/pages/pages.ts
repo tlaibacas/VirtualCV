@@ -37,7 +37,7 @@ const createPages = {
 };
 
 function getTranslations(slug: PageSlug) {
-  const page = Object.entries(pages).find(([key, values]) => {
+  const page = Object.entries(pages).find(([, values]) => {
     return (values as readonly string[]).includes(slug);
   });
 
