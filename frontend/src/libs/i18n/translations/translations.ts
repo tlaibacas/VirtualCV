@@ -1,36 +1,19 @@
 import { codes, LanguageCode } from "../locales/countries";
+import { dialog } from "@/components/dialogs/cookiesDialog/translations";
+import { common } from "@/components/card/remember/translations";
+import { TranslationTree } from "./types";
 
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
-  yes: ["Sim", "Yes", "Sí", "Oui"],
-  no: ["Não", "No", "No", "Non"],
+
   rights: [
     "Todos os direitos reservados.",
     "All rights reserved.",
     "Todos los derechos reservados.",
     "Tous droits réservés.",
   ],
-  dontWarn: [
-    "Não me avise novamente",
-    "Don't warn me again",
-    "No me vuelvas a avisar",
-    "Ne plus m'avertir",
-  ],
-  goTo: ["Ir para", "Go to", "Ir a", "Aller à"],
-  continue: ["Continuar", "Continue", "Continuar", "Continuer"],
-  dialogFirst: [
-    "O seu idioma guardado difere do idioma atual da página.",
-    "Your saved language differs from the current page language.",
-    "Su idioma guardado difiere del idioma actual de la página.",
-    "Votre langue enregistrée diffère de la langue actuelle de la page.",
-  ],
-  dialogSecond: [
-    "Deseja continuar ou ir para o seu idioma preferido?",
-    "Would you like to continue or go to your preferred language?",
-    "¿Desea continuar o ir a su idioma preferido?",
-    "Voulez-vous continuer ou aller à votre langue préférée?",
-  ],
-
+  common,
+  dialog,
   bluescreenTitle: [
     "O VirtualCV encontrou um problema.",
     "VirtualCV encountered a problem.",
@@ -90,12 +73,16 @@ const translationData = {
 export function getTranslations(lang: LanguageCode) {
   const index = codes.indexOf(lang);
 
-  return Object.fromEntries(
-    Object.entries(translationData).map(([key, values]) => [
-      key,
-      values[index],
-    ]),
-  ) as {
-    [K in keyof typeof translationData]: (typeof translationData)[K][number];
-  };
+  function translate(data: Record<string, unknown>): Record<string, unknown> {
+    return Object.fromEntries(
+      Object.entries(data).map(([key, value]) => [
+        key,
+        Array.isArray(value)
+          ? value[index]
+          : translate(value as Record<string, unknown>),
+      ]),
+    );
+  }
+
+  return translate(translationData) as TranslationTree<typeof translationData>;
 }
