@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -57,17 +56,11 @@ function DifCookie({ val }: WarningProps) {
 
   return (
     <dialog ref={dialogRef} className={`${styles.dialog} ${styles.warning}`}>
-      <p>
-        {t.dialogFirst ||
-          "Your saved language differs from the current page language."}
-      </p>
+      <p>{t.dialog.cookie.first}</p>
 
-      <p>
-        {t.dialogSecond ||
-          "Would you like to continue or go to your preferred language?"}
-      </p>
+      <p>{t.dialog.cookie.second}</p>
 
-      <p>{t.dontWarn || "Don't warn me again"}</p>
+      <p>{t.dialog.cookie.dontWarn}</p>
 
       <Remember langProp={val.langVal} onChange={setRemember} />
 
@@ -79,7 +72,7 @@ function DifCookie({ val }: WarningProps) {
             router.push(`/${val.langVal}`);
           }}
         >
-          {t.goTo || "Go to"} {langName}
+          {t.dialog.cookie.goTo} {langName}
         </button>
 
         <button
@@ -89,7 +82,7 @@ function DifCookie({ val }: WarningProps) {
             router.refresh();
           }}
         >
-          {t.continue || "Continue"}
+          {t.dialog.cookie.continue}
         </button>
       </div>
     </dialog>
