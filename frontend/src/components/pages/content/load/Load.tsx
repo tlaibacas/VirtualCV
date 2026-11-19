@@ -1,4 +1,4 @@
-import { getTranslations } from "@/libs/i18n/translations/translations";
+import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import Image from "next/image";
 import styles from "./Load.module.css";
 import Loading from "@/components/main/loading/Loading";
