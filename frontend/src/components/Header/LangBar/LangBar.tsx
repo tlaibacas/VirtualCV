@@ -6,11 +6,11 @@ import Image from "next/image";
 
 import { locales } from "@/libs/i18n/locales/countries";
 import styles from "./LangBar.module.css";
-import { Props } from "./types";
+import type { Props } from "./types";
 
 export default function LangBar({ langProp, error, dropDown }: Props) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(langProp || "en");
+  const [selected, setSelected] = useState(langProp);
 
   const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
@@ -66,7 +66,7 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
             type="button"
             className={styles.trigger}
             aria-expanded={open}
-            onClick={() => setOpen(!open)}
+            onClick={() => setOpen((previous) => !previous)}
           >
             <Image
               className={styles.flag}
@@ -76,7 +76,9 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
               height={80}
               loading="eager"
             />
+
             {current.language}
+
             <span aria-hidden="true">{open ? "▲" : "▼"}</span>
           </button>
 
@@ -89,6 +91,7 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
               <li key={code}>
                 <button
                   type="button"
+                  className={dropDown ? styles.dropdownButtonError : undefined}
                   onClick={() => handleLanguageChange(code)}
                   aria-current={selected === code ? "page" : undefined}
                 >
@@ -99,6 +102,7 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
                     width={120}
                     height={80}
                   />
+
                   {language}
                 </button>
               </li>
