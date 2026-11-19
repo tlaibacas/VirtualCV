@@ -2,7 +2,7 @@
 import styles from "./LangCards.module.css";
 import Image from "next/image";
 import { locales } from "@/libs/i18n/locales/countries";
-import Remember from "@/components/card/remember/Remember";
+import Remember from "@/components/Card/remember/Remember";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createCookie } from "@/libs/cookies/cookies";

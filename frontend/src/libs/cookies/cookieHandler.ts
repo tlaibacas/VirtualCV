@@ -1,4 +1,4 @@
-import { ThemeType } from "@/components/header/themeButton/types";
+import { ThemeType } from "@/components/Header/themeButton/types";
 import { codes, LanguageCode } from "../i18n/locales/countries";
 
 function isSupportedLanguage(value: string | undefined): value is LanguageCode {

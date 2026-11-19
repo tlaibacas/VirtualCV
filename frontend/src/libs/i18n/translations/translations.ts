@@ -1,7 +1,7 @@
-import { common } from "@/components/card/remember/translations";
-import { dialog } from "@/components/dialogs/cookiesDialog/translations";
-import { footer } from "@/components/footer/translations";
-import { loading } from "@/components/pages/content/load/translations";
+import { common } from "@/components/Card/remember/translations";
+import { dialog } from "@/components/Dialogs/cookiesDialog/translations";
+import { footer } from "@/components/Footer/translations";
+import { loading } from "@/components/Load/translations";
 
 export const translationData = {
   loading,
