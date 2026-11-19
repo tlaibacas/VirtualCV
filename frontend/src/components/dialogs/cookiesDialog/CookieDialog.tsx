@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Remember from "@/components/card/remember/Remember";
 import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
-import { getTranslations } from "@/libs/i18n/translations/translations";
+import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import { WarningProps } from "./types";
 import { localeData } from "@/libs/i18n/locales/countries";
 
