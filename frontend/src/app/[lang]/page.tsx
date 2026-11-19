@@ -2,15 +2,15 @@ import Load from "@/components/Load/Load";
 import type { PageProps } from "./types";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import { ThemeType } from "@/components/Header/themeButton/types";
+import { ThemeType } from "@/components/Header/ThemeButton/types";
 import { cookies } from "next/headers";
 import { getTheme, isSupportedLanguage } from "@/libs/cookies/cookieHandler";
 import {
   DifCookie,
   WrongCookie,
-} from "@/components/Dialogs/cookiesDialog/CookieDialog";
+} from "@/components/Dialogs/CookiesDialog/CookieDialog";
 import { LanguageCode } from "@/libs/i18n/locales/countries";
-import Bluescreen from "@/components/BlueScreen/Bluescreen";
+import Bluescreen from "@/components/BlueScreen/BlueScreen";
 import {
   defaultLangError,
   langNotFoundError,

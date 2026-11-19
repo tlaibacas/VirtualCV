@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Theme from "./themeButton/Theme";
-import LangBar from "./langBar/LangBar";
+import Theme from "./ThemeButton/Theme";
+import LangBar from "./LangBar/LangBar";
 import styles from "./Header.module.css";
 import { HeaderProps } from "./types";
 

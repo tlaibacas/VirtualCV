@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import "./page.css";
 import { getTheme, isSupportedLanguage } from "@/libs/cookies/cookieHandler";
-import type { ThemeType } from "@/components/Header/themeButton/types";
+import type { ThemeType } from "@/components/Header/ThemeButton/types";
 import type { LanguageCode } from "@/libs/i18n/locales/countries";
 
 import Header from "@/components/Header/Header";

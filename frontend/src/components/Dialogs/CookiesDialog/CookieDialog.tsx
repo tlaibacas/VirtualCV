@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import Remember from "@/components/Card/remember/Remember";
+import Remember from "@/components/Card/Remember/Remember";
 import styles from "./CookieDialog.module.css";
 import { clearCookies, createCookie } from "@/libs/cookies/cookies";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";

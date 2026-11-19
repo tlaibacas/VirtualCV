@@ -1,7 +1,7 @@
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import Image from "next/image";
 import styles from "./Load.module.css";
-import Loading from "@/components/Main/loading/Loading";
+import Loading from "@/components/Main/Loading/Loading";
 import { LoadingProps } from "./types";
 
 export default function Load({ lang }: LoadingProps) {

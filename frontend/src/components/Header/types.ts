@@ -1,5 +1,5 @@
 import type { LanguageCode } from "@/libs/i18n/locales/countries";
-import { ThemeType } from "./themeButton/types";
+import { ThemeType } from "./ThemeButton/types";
 
 export type HeaderProps = {
   initialTheme?: ThemeType;

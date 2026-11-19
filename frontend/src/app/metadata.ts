@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { config } from "@/cfg/site.config";
+import { config } from "@/config/site.config";
 import { locales } from "@/libs/i18n/locales/countries";
 
 export const metadata: Metadata = {

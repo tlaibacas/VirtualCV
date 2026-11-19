@@ -7,7 +7,7 @@ import "./globals.css";
 import {
   metadata as siteMetadata,
   viewport as siteViewport,
-} from "@/app/metadata/metadata";
+} from "@/app/metadata";
 
 import { getTheme } from "@/libs/cookies/cookieHandler";
 

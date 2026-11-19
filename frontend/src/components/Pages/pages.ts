@@ -6,7 +6,7 @@ const pages = {
 } as const;
 
 const components = {
-  greenscreen: () => import("./content/greenscreen"),
+  greenscreen: () => import("./Content/greenscreen"),
 } satisfies Record<PageKey, () => Promise<unknown>>;
 
 const slugData = Object.fromEntries(codes.map((code) => [code, code]));
