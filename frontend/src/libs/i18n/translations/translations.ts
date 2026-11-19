@@ -1,11 +1,9 @@
-import { codes, LanguageCode } from "../locales/countries";
-import { dialog } from "@/components/dialogs/cookiesDialog/translations";
 import { common } from "@/components/card/remember/translations";
+import { dialog } from "@/components/dialogs/cookiesDialog/translations";
 import { footer } from "@/components/footer/translations";
 import { loading } from "@/components/pages/content/load/translations";
-import { TranslationTree } from "./types";
 
-const translationData = {
+export const translationData = {
   loading,
   footer,
   common,
@@ -65,20 +63,3 @@ const translationData = {
     "Protection du système VirtualCV",
   ],
 } as const;
-
-export function getTranslations(lang: LanguageCode) {
-  const index = codes.indexOf(lang);
-
-  function translate(data: Record<string, unknown>): Record<string, unknown> {
-    return Object.fromEntries(
-      Object.entries(data).map(([key, value]) => [
-        key,
-        Array.isArray(value)
-          ? value[index]
-          : translate(value as Record<string, unknown>),
-      ]),
-    );
-  }
-
-  return translate(translationData) as TranslationTree<typeof translationData>;
-}
