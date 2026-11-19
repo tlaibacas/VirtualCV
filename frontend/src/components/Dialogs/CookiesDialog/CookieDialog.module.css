@@ -29,14 +29,6 @@
   animation: gradient 3s forwards;
 }
 
-.warning::backdrop {
-  background: linear-gradient(
-    to bottom right,
-    var(--primary) var(--primary-position),
-    var(--warn) 100%
-  );
-  animation: gradient 3s forwards;
-}
 .dialog:not([open]) {
   display: none;
 }
@@ -69,8 +61,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .invalid::backdrop,
-  .warning::backdrop {
+  .invalid::backdrop {
     animation-duration: 10s;
   }
 
