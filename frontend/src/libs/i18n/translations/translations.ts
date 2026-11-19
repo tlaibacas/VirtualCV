@@ -1,17 +1,13 @@
 import { codes, LanguageCode } from "../locales/countries";
 import { dialog } from "@/components/dialogs/cookiesDialog/translations";
 import { common } from "@/components/card/remember/translations";
+import { footer } from "@/components/footer/translations";
 import { TranslationTree } from "./types";
 
 const translationData = {
   loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
 
-  rights: [
-    "Todos os direitos reservados.",
-    "All rights reserved.",
-    "Todos los derechos reservados.",
-    "Tous droits réservés.",
-  ],
+  footer,
   common,
   dialog,
   bluescreenTitle: [
