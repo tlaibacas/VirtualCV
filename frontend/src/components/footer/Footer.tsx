@@ -7,7 +7,7 @@ export default function Footer({ langProp }: FooterProps) {
   return (
     <footer className={styles.footer}>
       <p>
-        &copy; {new Date().getFullYear()} {t.rights || "All rights reserved"}
+        &copy; {new Date().getFullYear()} {t.footer.rights}
       </p>
       <p>My VirtualCV</p>
     </footer>
