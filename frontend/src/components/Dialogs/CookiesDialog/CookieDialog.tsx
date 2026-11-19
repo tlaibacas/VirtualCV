@@ -4,38 +4,10 @@ import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import Remember from "@/components/Card/Remember/Remember";
 import styles from "./CookieDialog.module.css";
-import { clearCookies, createCookie } from "@/libs/cookies/cookies";
+import { createCookie } from "@/libs/cookies/cookies";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import { WarningProps } from "./types";
 import { localeData } from "@/libs/i18n/locales/countries";
-
-function WrongCookie() {
-  const dialogRef = useRef<HTMLDialogElement>(null);
-  const router = useRouter();
-
-  useEffect(() => {
-    const dialog = dialogRef.current;
-
-    if (dialog && !dialog.open) {
-      dialog.showModal();
-    }
-  }, []);
-
-  return (
-    <dialog ref={dialogRef} className={`${styles.dialog} ${styles.invalid}`}>
-      <p>Your saved language is invalid or the cookie is corrupted.</p>
-
-      <button
-        onClick={() => {
-          clearCookies("lang", "warn");
-          router.push("/");
-        }}
-      >
-        Go to home
-      </button>
-    </dialog>
-  );
-}
 
 function DifCookie({ val }: WarningProps) {
   const [remember, setRemember] = useState(false);
@@ -89,4 +61,4 @@ function DifCookie({ val }: WarningProps) {
   );
 }
 
-export { DifCookie, WrongCookie };
+export { DifCookie };
