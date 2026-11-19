@@ -1,12 +1,8 @@
 import { getTranslations } from "@/libs/i18n/translations/translations";
-import type { LanguageCode } from "@/libs/i18n/locales/countries";
 import Image from "next/image";
 import styles from "./Load.module.css";
 import Loading from "@/components/main/loading/Loading";
-
-type LoadingProps = {
-  lang: LanguageCode;
-};
+import { LoadingProps } from "./types";
 
 export default function Load({ lang }: LoadingProps) {
   const t = getTranslations(lang);
@@ -27,7 +23,7 @@ export default function Load({ lang }: LoadingProps) {
         </div>
 
         <div className={styles.loading}>
-          <span>{t.loading || "Loading..."}</span>
+          <span>{t.loading.loadingText}</span>
           <Loading />
         </div>
       </div>
