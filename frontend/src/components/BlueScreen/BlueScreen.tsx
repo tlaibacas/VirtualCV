@@ -1,4 +1,4 @@
-import styles from "./Bluescreen.module.css";
+import styles from "./BlueScreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import { langNotFoundError } from "@/libs/i18n/translations/errors";
 import type { BluescreenProp } from "./types";
