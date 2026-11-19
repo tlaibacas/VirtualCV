@@ -1,6 +1,6 @@
 "use client";
 
-import { getTranslations } from "@/libs/i18n/translations/translations";
+import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import type { Props } from "./types";
 import styles from "./Remember.module.css";
 
