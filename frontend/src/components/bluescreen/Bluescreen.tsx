@@ -1,6 +1,6 @@
 import styles from "./Bluescreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
-import { BluescreenProp } from "./types";
+import { BluescreenProp } from "../pages/content/types";
 
 export default async function Bluescreen({ lang }: BluescreenProp) {
   const t = getTranslations(lang);
