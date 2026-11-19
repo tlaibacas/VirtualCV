@@ -5,16 +5,14 @@ import Footer from "@/components/Footer/Footer";
 import { ThemeType } from "@/components/Header/ThemeButton/types";
 import { cookies } from "next/headers";
 import { getTheme, isSupportedLanguage } from "@/libs/cookies/cookieHandler";
-import {
-  DifCookie,
-  WrongCookie,
-} from "@/components/Dialogs/CookiesDialog/CookieDialog";
+import { DifCookie } from "@/components/Dialogs/CookiesDialog/CookieDialog";
 import { LanguageCode } from "@/libs/i18n/locales/countries";
 import Bluescreen from "@/components/BlueScreen/BlueScreen";
 import {
+  corruptedCookieError,
   defaultLangError,
   langNotFoundError,
-} from "@/libs/i18n/translations/errors";
+} from "@/libs/errors/errorHandling";
 
 export default async function Page({ params }: PageProps) {
   const { lang } = await params;
@@ -26,21 +24,20 @@ export default async function Page({ params }: PageProps) {
     cookieStore.get("theme")?.value as ThemeType | undefined,
   );
 
-  if (!isSupportedLanguage(lang))
-    return <Bluescreen lang={defaultLangError} error={langNotFoundError} />;
-
-  if (!isSupportedLanguage(langVal)) {
-    if (langVal !== undefined) {
-      return <WrongCookie />;
-    }
+  if (!isSupportedLanguage(langVal) && langVal !== undefined) {
+    return <Bluescreen lang={defaultLangError} error={corruptedCookieError} />;
   }
 
-  if (!warn && isSupportedLanguage(langVal) && langVal !== lang) {
-    return <DifCookie val={{ langVal }} />;
+  if (!isSupportedLanguage(lang)) {
+    return <Bluescreen lang={defaultLangError} error={langNotFoundError} />;
   }
 
   return (
     <>
+      {!warn && isSupportedLanguage(langVal) && langVal !== lang && (
+        <DifCookie val={{ langVal }} />
+      )}
+
       <Header initialTheme={theme} langProp={lang} />
       <Load lang={lang} />
       <Footer langProp={lang} />
