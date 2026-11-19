@@ -1,5 +1,5 @@
 import { codes, LanguageCode } from "../locales/countries";
-import { ErrorCode, errorData } from "./errors";
+import { ErrorCode, errorData } from "../../errors/errorHandling";
 import { translationData } from "./translations";
 import { TranslationTree } from "./types";
 
