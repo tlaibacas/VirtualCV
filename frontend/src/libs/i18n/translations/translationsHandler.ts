@@ -3,7 +3,16 @@ import { ErrorCode, errorData } from "./errors";
 import { translationData } from "./translations";
 import { TranslationTree } from "./types";
 
-export function getTranslations(lang: LanguageCode, error?: ErrorCode) {
+function getTranslations(
+  lang: LanguageCode,
+): TranslationTree<typeof translationData>;
+
+function getTranslations<E extends ErrorCode>(
+  lang: LanguageCode,
+  error: E,
+): TranslationTree<(typeof errorData)[E]>;
+
+function getTranslations(lang: LanguageCode, error?: ErrorCode) {
   const index = codes.indexOf(lang);
 
   function translate(data: Record<string, unknown>): Record<string, unknown> {
@@ -18,10 +27,10 @@ export function getTranslations(lang: LanguageCode, error?: ErrorCode) {
   }
 
   if (error) {
-    return translate(errorData[error]) as TranslationTree<
-      (typeof errorData)[typeof error]
-    >;
+    return translate(errorData[error]);
   }
 
-  return translate(translationData) as TranslationTree<typeof translationData>;
+  return translate(translationData);
 }
+
+export { getTranslations };
