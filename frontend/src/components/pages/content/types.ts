@@ -1,10 +1,5 @@
 import { LanguageCode } from "@/libs/i18n/locales/countries";
 
-type LoadingProps = {
+export type BluescreenProp = {
   lang: LanguageCode;
 };
-type BluescreenProp = {
-  lang: LanguageCode;
-};
-
-export type { LoadingProps, BluescreenProp };
