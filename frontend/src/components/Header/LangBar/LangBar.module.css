@@ -4,7 +4,8 @@
 }
 
 .trigger,
-.dropdown button {
+.dropdown button,
+.dropdownButtonError {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -15,6 +16,9 @@
   cursor: pointer;
 }
 
+.dropdownButtonError {
+  background: rgb(0 0 0 / 10%);
+}
 .trigger img,
 .dropdown img {
   width: 1.25rem;
