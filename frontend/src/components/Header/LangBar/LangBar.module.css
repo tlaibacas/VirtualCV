@@ -16,9 +16,6 @@
   cursor: pointer;
 }
 
-.dropdownButtonError {
-  background: rgb(0 0 0 / 10%);
-}
 .trigger img,
 .dropdown img {
   width: 1.25rem;
