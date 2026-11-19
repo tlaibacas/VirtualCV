@@ -1,6 +1,7 @@
 import styles from "./BlueScreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import { langNotFoundError } from "@/libs/i18n/translations/errors";
+import AvailableLanguages from "@/components/AvailableLanguages/AvalaibleLanguages";
 import type { BluescreenProp } from "./types";
 
 export default function Bluescreen({ lang, error }: BluescreenProp) {
@@ -21,7 +22,12 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
         <div className={styles.message}>
           <p>{t.cause}</p>
           <p>{t.explanation}</p>
-          {error === langNotFoundError && <p>{t.availableLanguages}</p>}
+          {error === langNotFoundError && (
+            <div className={styles.technicalLanguages}>
+              <p>{t.availableLanguages}</p>
+              <AvailableLanguages />
+            </div>
+          )}
         </div>
 
         <div className={styles.technical}>
