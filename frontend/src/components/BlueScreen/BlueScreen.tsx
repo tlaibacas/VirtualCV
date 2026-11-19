@@ -1,8 +1,12 @@
 import styles from "./BlueScreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
-import { langNotFoundError } from "@/libs/i18n/translations/errors";
-import AvailableLanguages from "@/components/AvailableLanguages/AvalaibleLanguages";
+import {
+  corruptedCookieError,
+  langNotFoundError,
+} from "@/libs/errors/errorHandling";
 import type { BluescreenProp } from "./types";
+import ClearCookies from "../ClearCookies/ClearCookies";
+import LangBar from "../Header/LangBar/LangBar";
 
 export default function Bluescreen({ lang, error }: BluescreenProp) {
   const t = getTranslations(lang, error);
@@ -10,6 +14,12 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
   return (
     <main className={styles.screen}>
       <section className={styles.content}>
+        <div className={`${styles.technicalAditional} ${styles.center}`}>
+          <p>{t.changeLanguageNow}</p>
+          {(error === corruptedCookieError || error === langNotFoundError) && (
+            <LangBar dropDown={true} langProp={lang} />
+          )}
+        </div>
         <header className={styles.header}>
           <div className={styles.icon}>:(</div>
 
@@ -23,9 +33,15 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
           <p>{t.cause}</p>
           <p>{t.explanation}</p>
           {error === langNotFoundError && (
-            <div className={styles.technicalLanguages}>
+            <div className={styles.technicalAditional}>
               <p>{t.availableLanguages}</p>
-              <AvailableLanguages />
+              <LangBar error={true} />
+            </div>
+          )}
+          {error === corruptedCookieError && (
+            <div className={`${styles.technicalAditional} ${styles.center}`}>
+              <p>{t.clickOnButtonToFixThat}</p>
+              <ClearCookies label={t.removeCookies} />
             </div>
           )}
         </div>
@@ -40,7 +56,7 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
 
         <footer className={styles.footer}>
           <span>{t.footer}</span>
-          <span>ERROR: VCV_NOT_FOUND</span>
+          <span>ERROR: {error}</span>
         </footer>
       </section>
     </main>
