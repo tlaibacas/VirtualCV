@@ -1,9 +1,9 @@
 import styles from "./Bluescreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
-import { BluescreenProp } from "../pages/content/types";
+import type { BluescreenProp } from "./types";
 
-export default async function Bluescreen({ lang }: BluescreenProp) {
-  const t = getTranslations(lang);
+export default function Bluescreen({ lang, error }: BluescreenProp) {
+  const t = getTranslations(lang, error);
 
   return (
     <main className={styles.screen}>
@@ -12,32 +12,27 @@ export default async function Bluescreen({ lang }: BluescreenProp) {
           <div className={styles.icon}>:(</div>
 
           <div>
-            <h1>{t.bluescreenTitle}</h1>
-            <p className={styles.subtitle}>{t.bluescreenSubtitle}</p>
+            <h1>{t.title}</h1>
+            <p className={styles.subtitle}>{t.subtitle}</p>
           </div>
         </header>
 
         <div className={styles.message}>
-          <p>{t.bluescreenMessage1}</p>
-          <p>{t.bluescreenMessage2}</p>
-          <p>{t.bluescreenMessage3}</p>
+          <p>{t.cause}</p>
+          <p>{t.explanation}</p>
         </div>
 
         <div className={styles.technical}>
-          <p>{t.bluescreenTechnical}</p>
+          <p>{t.technicalInfo}</p>
 
-          <p>
-            <strong>ERROR:</strong> VCV_SERVICE_UNAVAILABLE
-          </p>
+          <p>{t.errorType}</p>
 
-          <p>{t.bluescreenService}</p>
-
-          <p>{t.bluescreenStatus}</p>
+          <p>{t.errorStatus}</p>
         </div>
 
         <footer className={styles.footer}>
-          <span>{t.bluescreenFooter}</span>
-          <span>Error reference: VCV-503</span>
+          <span>{t.footer}</span>
+          <span>ERROR: VCV_NOT_FOUND</span>
         </footer>
       </section>
     </main>
