@@ -1,6 +1,6 @@
 import type { FooterProps } from "./types";
 import styles from "./Footer.module.css";
-import { getTranslations } from "@/libs/i18n/translations/translations";
+import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 
 export default function Footer({ langProp }: FooterProps) {
   const t = getTranslations(langProp ?? "en");
