@@ -6,7 +6,7 @@ const pages = {
 } as const;
 
 const components = {
-  bluescreen: () => import("@/components/pages/content/Bluescreen"),
+  bluescreen: () => import("@/components/bluescreen/Bluescreen"),
 } satisfies Record<PageKey, () => Promise<unknown>>;
 
 const slugData = Object.fromEntries(codes.map((code) => [code, code]));
