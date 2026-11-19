@@ -2,11 +2,11 @@ import { codes, LanguageCode } from "../locales/countries";
 import { dialog } from "@/components/dialogs/cookiesDialog/translations";
 import { common } from "@/components/card/remember/translations";
 import { footer } from "@/components/footer/translations";
+import { loading } from "@/components/pages/content/load/translations";
 import { TranslationTree } from "./types";
 
 const translationData = {
-  loading: ["A carregar...", "Loading...", "Cargando...", "Chargement..."],
-
+  loading,
   footer,
   common,
   dialog,
