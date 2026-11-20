@@ -5,17 +5,28 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 import { locales } from "@/libs/i18n/locales/countries";
+import type { LanguageCode } from "@/libs/i18n/locales/countries";
 import styles from "./LangBar.module.css";
 import type { Props } from "./types";
 
-export default function LangBar({ langProp, error, change }: Props) {
+export default function LangBar({
+  langProp,
+  error,
+  change,
+  onLanguageChange,
+}: Props) {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState(langProp);
+  const [selected, setSelected] = useState<LanguageCode>(langProp ?? "en");
 
   const navRef = useRef<HTMLElement>(null);
   const router = useRouter();
 
-  const current = locales[selected as keyof typeof locales];
+  const current = locales[selected];
+
+  const languageEntries = Object.entries(locales) as [
+    LanguageCode,
+    (typeof locales)[LanguageCode],
+  ][];
 
   useEffect(() => {
     if (!open) return;
@@ -33,9 +44,10 @@ export default function LangBar({ langProp, error, change }: Props) {
     };
   }, [open]);
 
-  function handleLanguageChange(code: string) {
+  function handleLanguageChange(code: LanguageCode) {
     setSelected(code);
     setOpen(false);
+    onLanguageChange?.(code);
 
     if (change) return;
 
@@ -52,7 +64,7 @@ export default function LangBar({ langProp, error, change }: Props) {
     >
       {error ? (
         <ul className={styles.availableLanguages}>
-          {Object.entries(locales).map(([code, { language, flagPath }]) => (
+          {languageEntries.map(([code, { language, flagPath }]) => (
             <li key={code}>
               <button
                 type="button"
@@ -92,7 +104,7 @@ export default function LangBar({ langProp, error, change }: Props) {
             aria-hidden={!open}
             inert={!open}
           >
-            {Object.entries(locales).map(([code, { language, flagPath }]) => (
+            {languageEntries.map(([code, { language, flagPath }]) => (
               <li key={code}>
                 <button
                   type="button"
