@@ -1,25 +1,37 @@
+"use client";
+
+import { useState } from "react";
+
 import styles from "./BlueScreen.module.css";
 import { getTranslations } from "@/libs/i18n/translations/translationsHandler";
 import {
   corruptedCookieError,
   langNotFoundError,
 } from "@/libs/errors/errorHandling";
-import type { BluescreenProp } from "./types";
+import type { Props } from "./types";
 import ClearCookies from "../ClearCookies/ClearCookies";
 import LangBar from "../Header/LangBar/LangBar";
 
-export default function Bluescreen({ lang, error }: BluescreenProp) {
-  const t = getTranslations(lang, error);
+export default function Bluescreen({ lang, error }: Props) {
+  const [selectedLang, setSelectedLang] = useState(lang);
+
+  const t = getTranslations(selectedLang, error);
 
   return (
     <main className={styles.screen}>
       <section className={styles.content}>
         <div className={`${styles.technicalAditional} ${styles.center}`}>
           <p>{t.changeLanguageNow}</p>
+
           {(error === corruptedCookieError || error === langNotFoundError) && (
-            <LangBar change={true} langProp={lang} />
+            <LangBar
+              change={true}
+              langProp={selectedLang}
+              onLanguageChange={setSelectedLang}
+            />
           )}
         </div>
+
         <header className={styles.header}>
           <div className={styles.icon}>:(</div>
 
@@ -32,12 +44,14 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
         <div className={styles.message}>
           <p>{t.cause}</p>
           <p>{t.explanation}</p>
+
           {error === langNotFoundError && (
             <div className={styles.technicalAditional}>
               <p>{t.availableLanguages}</p>
               <LangBar error={true} />
             </div>
           )}
+
           {error === corruptedCookieError && (
             <div className={`${styles.technicalAditional} ${styles.center}`}>
               <p>{t.clickOnButtonToFixThat}</p>
@@ -48,9 +62,7 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
 
         <div className={styles.technical}>
           <p>{t.technicalInfo}</p>
-
           <p>{t.errorType}</p>
-
           <p>{t.errorStatus}</p>
         </div>
 
