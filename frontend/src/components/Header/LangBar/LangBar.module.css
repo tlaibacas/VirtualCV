@@ -66,10 +66,20 @@
   background: var(--secondary);
 }
 
-/* Dropdown especial */
 .dropdownError .trigger,
 .dropdownError .dropdown button {
-  background: blue;
+  background: rgb(0 120 215 / 90%);
+  border-radius: 0.25rem;
+}
+
+.dropdownError .dropdown {
+  background: rgb(0 120 215 / 90%);
+  border-radius: 0.25rem;
+}
+
+.dropdownError .trigger:hover,
+.dropdownError .dropdown button:hover {
+  background: rgb(0 120 215 / 75%);
 }
 
 .errorLanguages {
@@ -103,6 +113,13 @@
   object-fit: cover;
 }
 
+@media (max-width: 400px) {
+  .errorLanguages {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 @media (hover: hover) and (pointer: fine) {
   .errorLanguages button:hover {
     background-color: rgb(128 128 128 / 12%);
@@ -111,17 +128,13 @@
 }
 
 .errorLanguages button:focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .dropdown {
-    transition-duration: 0.01ms;
-    transform: none;
-  }
-
-  .dropdown.open {
+    transition: none;
     transform: none;
   }
 
