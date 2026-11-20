@@ -1,4 +1,3 @@
-
 .langBar {
   position: relative;
   width: fit-content;
@@ -14,6 +13,7 @@
   border: 0;
   border-radius: 0.25rem;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .trigger img,
@@ -61,28 +61,14 @@
   text-align: left;
 }
 
-.trigger:hover,
-.dropdown button:hover {
+.changeLanguage .trigger,
+.changeLanguage .dropdown button,
+.changeLanguage .dropdown {
   background: var(--secondary);
-}
-
-.dropdownError .trigger,
-.dropdownError .dropdown button {
-  background: rgb(0 120 215 / 90%);
   border-radius: 0.25rem;
 }
 
-.dropdownError .dropdown {
-  background: rgb(0 120 215 / 90%);
-  border-radius: 0.25rem;
-}
-
-.dropdownError .trigger:hover,
-.dropdownError .dropdown button:hover {
-  background: rgb(0 120 215 / 75%);
-}
-
-.errorLanguages {
+.availableLanguages {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -92,21 +78,21 @@
   list-style: none;
 }
 
-.errorLanguages button {
+.availableLanguages button {
   display: flex;
   align-items: center;
   gap: 6px;
   padding: 6px 10px;
   border: 0;
   appearance: none;
-  background: rgb(255 255 255 / 10%);
+  background: var(--secondary);
   color: inherit;
   font: inherit;
   font-size: 0.875rem;
   transition: background-color 150ms ease;
 }
 
-.errorLanguages img {
+.availableLanguages img {
   display: block;
   width: 18px;
   height: 12px;
@@ -114,20 +100,27 @@
 }
 
 @media (max-width: 400px) {
-  .errorLanguages {
+  .availableLanguages {
     flex-direction: column;
     align-items: center;
   }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .errorLanguages button:hover {
-    background-color: rgb(128 128 128 / 12%);
+  .trigger:hover,
+  .dropdown button:hover {
+    background: var(--secondary);
+  }
+
+  .changeLanguage .trigger:hover,
+  .changeLanguage .dropdown button:hover,
+  .availableLanguages button:hover {
+    filter: brightness(1.2);
     cursor: pointer;
   }
 }
 
-.errorLanguages button:focus-visible {
+.availableLanguages button:focus-visible {
   outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
@@ -138,7 +131,7 @@
     transform: none;
   }
 
-  .errorLanguages button {
+  .availableLanguages button {
     transition: none;
   }
 }

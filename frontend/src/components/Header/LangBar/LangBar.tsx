@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -9,7 +8,7 @@ import { locales } from "@/libs/i18n/locales/countries";
 import styles from "./LangBar.module.css";
 import type { Props } from "./types";
 
-export default function LangBar({ langProp, error, dropDown }: Props) {
+export default function LangBar({ langProp, error, change }: Props) {
   const [open, setOpen] = useState(false);
   const [selected, setSelected] = useState(langProp);
 
@@ -37,22 +36,22 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
   function handleLanguageChange(code: string) {
     setSelected(code);
     setOpen(false);
+
+    if (change) return;
+
     router.push(`/${code}`);
   }
 
   return (
     <nav
       ref={navRef}
-      className={[
-        !error && styles.langBar,
-        dropDown && styles.dropdownError,
-      ]
+      className={[!error && styles.langBar, change && styles.changeLanguage]
         .filter(Boolean)
         .join(" ")}
       aria-label="Language selection"
     >
       {error ? (
-        <ul className={styles.errorLanguages}>
+        <ul className={styles.availableLanguages}>
           {Object.entries(locales).map(([code, { language, flagPath }]) => (
             <li key={code}>
               <button

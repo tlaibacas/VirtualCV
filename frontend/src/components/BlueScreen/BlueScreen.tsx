@@ -17,7 +17,7 @@ export default function Bluescreen({ lang, error }: BluescreenProp) {
         <div className={`${styles.technicalAditional} ${styles.center}`}>
           <p>{t.changeLanguageNow}</p>
           {(error === corruptedCookieError || error === langNotFoundError) && (
-            <LangBar dropDown={true} langProp={lang} />
+            <LangBar change={true} langProp={lang} />
           )}
         </div>
         <header className={styles.header}>
