@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -42,7 +43,12 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
   return (
     <nav
       ref={navRef}
-      className={error ? undefined : styles.langBar}
+      className={[
+        !error && styles.langBar,
+        dropDown && styles.dropdownError,
+      ]
+        .filter(Boolean)
+        .join(" ")}
       aria-label="Language selection"
     >
       {error ? (
@@ -91,7 +97,6 @@ export default function LangBar({ langProp, error, dropDown }: Props) {
               <li key={code}>
                 <button
                   type="button"
-                  className={dropDown ? styles.dropdownButtonError : undefined}
                   onClick={() => handleLanguageChange(code)}
                   aria-current={selected === code ? "page" : undefined}
                 >
