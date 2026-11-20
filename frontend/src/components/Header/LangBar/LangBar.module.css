@@ -1,11 +1,11 @@
+
 .langBar {
   position: relative;
   width: fit-content;
 }
 
 .trigger,
-.dropdown button,
-.dropdownButtonError {
+.dropdown button {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -64,6 +64,12 @@
 .trigger:hover,
 .dropdown button:hover {
   background: var(--secondary);
+}
+
+/* Dropdown especial */
+.dropdownError .trigger,
+.dropdownError .dropdown button {
+  background: blue;
 }
 
 .errorLanguages {
