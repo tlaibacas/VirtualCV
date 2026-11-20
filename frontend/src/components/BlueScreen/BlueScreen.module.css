@@ -127,8 +127,7 @@
 }
 
 @media (max-width: 400px) {
-  .technicalLanguages {
-    display: flex;
+  .technicalAditional {
     flex-direction: column;
     align-items: center;
   }
