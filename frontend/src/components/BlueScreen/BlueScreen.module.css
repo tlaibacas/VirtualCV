@@ -1,3 +1,4 @@
+
 .screen {
   min-height: 100vh;
   min-height: 100dvh;
@@ -64,11 +65,11 @@
 .technical p {
   margin: 0 0 6px;
 }
+
 .technicalAditional {
   display: flex;
   align-items: center;
   gap: 12px;
-
   padding: 15px;
   border: 1px solid rgb(255 255 255 / 35%);
   background: rgb(0 0 0 / 10%);
@@ -82,6 +83,7 @@
   flex-direction: column;
   align-items: center;
 }
+
 .technicalAditional p {
   margin: 0;
 }
@@ -97,14 +99,7 @@
   opacity: 0.85;
 }
 
-@media (max-width: 400px) {
-  .technicalLanguages {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
+@media (max-width: 540px) {
   .screen {
     padding: 28px 20px;
   }
@@ -128,5 +123,13 @@
 
   .footer {
     flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  .technicalLanguages {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
